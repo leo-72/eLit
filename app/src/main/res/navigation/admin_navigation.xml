@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/admin_navigation"
+    app:startDestination="@id/booksAdminFragment">
+
+    <fragment
+        android:id="@+id/booksAdminFragment"
+        android:name="com.android.elit.admin.Fragment.BooksAdminFragment"
+        android:label="fragment_books_admin"
+        tools:layout="@layout/fragment_books_admin" >
+        <action
+            android:id="@+id/action_booksAdminFragment_to_addBooksFragment"
+            app:destination="@id/addBooksFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addBooksFragment"
+        android:name="com.android.elit.admin.Fragment.AddBooksFragment"
+        android:label="fragment_add_books"
+        tools:layout="@layout/fragment_add_books" >
+        <action
+            android:id="@+id/action_addBooksFragment_to_accountFragment2"
+            app:destination="@id/accountFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountFragment2"
+        android:name="com.android.elit.fragment.AccountFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" />
+</navigation>

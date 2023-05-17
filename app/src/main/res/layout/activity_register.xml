@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.activity.RegisterActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/txtRegisterCreate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/text_for_register_create"
+            style="@style/WelcomePageTxt1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtRegisterNewAcc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_for_register_new_acc"
+            android:layout_marginTop="-5dp"
+            style="@style/WelcomePageTxt2"
+            app:layout_constraintEnd_toEndOf="@+id/txtRegisterCreate"
+            app:layout_constraintStart_toStartOf="@+id/txtRegisterCreate"
+            app:layout_constraintTop_toBottomOf="@+id/txtRegisterCreate" />
+
+        <com.android.elit.ui.customview.EditTextFullname
+            android:id="@+id/inpFullname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:inputType="text"
+            style="@style/EditTextCustom"
+            app:layout_constraintEnd_toEndOf="@+id/txtRegisterNewAcc"
+            app:layout_constraintStart_toStartOf="@+id/txtRegisterNewAcc"
+            app:layout_constraintTop_toBottomOf="@+id/txtRegisterNewAcc"/>
+
+        <com.android.elit.ui.customview.EditTextEmail
+            android:id="@+id/inpEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:inputType="textEmailAddress"
+            style="@style/EditTextCustom"
+            app:layout_constraintEnd_toEndOf="@+id/inpFullname"
+            app:layout_constraintStart_toStartOf="@+id/inpFullname"
+            app:layout_constraintTop_toBottomOf="@+id/inpFullname" />
+
+        <com.android.elit.ui.customview.EditTextPhone
+            android:id="@+id/inpPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:inputType="phone"
+            style="@style/EditTextCustom"
+            app:layout_constraintEnd_toEndOf="@+id/inpEmail"
+            app:layout_constraintStart_toStartOf="@+id/inpEmail"
+            app:layout_constraintTop_toBottomOf="@+id/inpEmail"/>
+
+        <com.android.elit.ui.customview.EditTextUsername
+            android:id="@+id/inpUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:inputType="text"
+            style="@style/EditTextCustom"
+            app:layout_constraintEnd_toEndOf="@+id/inpPhone"
+            app:layout_constraintStart_toStartOf="@+id/inpPhone"
+            app:layout_constraintTop_toBottomOf="@+id/inpPhone"/>
+
+        <com.android.elit.ui.customview.EditTextPass
+            android:id="@+id/inpPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:inputType="textPassword"
+            style="@style/EditTextCustom"
+            app:layout_constraintEnd_toEndOf="@+id/inpUsername"
+            app:layout_constraintStart_toStartOf="@+id/inpUsername"
+            app:layout_constraintTop_toBottomOf="@+id/inpUsername"/>
+
+        <com.android.elit.ui.customview.EditTextConfirmPass
+            android:id="@+id/inpConfirmPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:inputType="textPassword"
+            style="@style/EditTextCustom"
+            app:layout_constraintEnd_toEndOf="@+id/inpPass"
+            app:layout_constraintStart_toStartOf="@+id/inpPass"
+            app:layout_constraintTop_toBottomOf="@+id/inpPass"/>
+
+        <com.android.elit.ui.customview.ButtonRegister
+            android:id="@+id/btnRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            style="@style/CustomButton"
+            app:layout_constraintEnd_toEndOf="@+id/inpConfirmPass"
+            app:layout_constraintStart_toStartOf="@+id/inpConfirmPass"
+            app:layout_constraintTop_toBottomOf="@+id/inpConfirmPass"/>
+
+        <LinearLayout
+            android:id="@+id/component_or"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center_horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/txtHaveAcc"
+            app:layout_constraintEnd_toEndOf="@+id/btnRegister"
+            app:layout_constraintStart_toStartOf="@+id/btnRegister"
+            app:layout_constraintTop_toBottomOf="@+id/btnRegister">
+
+            <View
+                android:layout_width="120dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:background="@color/second_color" />
+
+            <TextView
+                style="@style/LineText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:text="@string/line_text" />
+
+            <View
+                android:layout_width="120dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:background="@color/second_color" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtHaveAcc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_have_acc"
+            style="@style/TextUnderline"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/component_or"
+            app:layout_constraintStart_toStartOf="@+id/component_or" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.activity.LoginActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/txtLoginWelcome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="@string/text_for_login_welcome"
+            style="@style/WelcomePageTxt1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtLoginNext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_for_login_next"
+            android:layout_marginTop="-5dp"
+            style="@style/WelcomePageTxt2"
+            app:layout_constraintEnd_toEndOf="@+id/txtLoginWelcome"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="@+id/txtLoginWelcome"
+            app:layout_constraintTop_toBottomOf="@+id/txtLoginWelcome" />
+
+        <com.android.elit.ui.customview.EditTextUsername
+            android:id="@+id/inpUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:inputType="text"
+            style="@style/EditTextCustom"
+            app:layout_constraintEnd_toEndOf="@+id/txtLoginNext"
+            app:layout_constraintStart_toStartOf="@+id/txtLoginNext"
+            app:layout_constraintTop_toBottomOf="@+id/txtLoginNext"/>
+
+        <com.android.elit.ui.customview.EditTextPass
+            android:id="@+id/inpPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:inputType="textPassword"
+            style="@style/EditTextCustom"
+            app:layout_constraintEnd_toEndOf="@+id/inpUsername"
+            app:layout_constraintStart_toStartOf="@+id/inpUsername"
+            app:layout_constraintTop_toBottomOf="@+id/inpUsername"/>
+
+        <com.android.elit.ui.customview.ButtonLogin
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            style="@style/CustomButton"
+            app:layout_constraintEnd_toEndOf="@+id/inpPass"
+            app:layout_constraintStart_toStartOf="@+id/inpPass"
+            app:layout_constraintTop_toBottomOf="@+id/inpPass" />
+
+        <LinearLayout
+            android:id="@+id/component_or"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center_horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/btnNewAcc"
+            app:layout_constraintEnd_toEndOf="@+id/btnLogin"
+            app:layout_constraintStart_toStartOf="@+id/btnLogin"
+            app:layout_constraintTop_toBottomOf="@+id/btnLogin">
+
+            <View
+                android:layout_width="120dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:background="@color/second_color" />
+
+            <TextView
+                style="@style/LineText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:text="@string/line_text" />
+
+            <View
+                android:layout_width="120dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:background="@color/second_color" />
+        </LinearLayout>
+
+        <com.android.elit.ui.customview.ButtonNewAcc
+            android:id="@+id/btnNewAcc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="100dp"
+            style="@style/CustomButton"
+            app:layout_constraintBottom_toTopOf="@+id/txtForgotPass"
+            app:layout_constraintEnd_toEndOf="@+id/component_or"
+            app:layout_constraintStart_toStartOf="@+id/component_or"/>
+
+        <TextView
+            android:id="@+id/txtForgotPass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_forgot_pass"
+            style="@style/TextUnderline"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/btnNewAcc"
+            app:layout_constraintStart_toStartOf="@+id/btnNewAcc" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

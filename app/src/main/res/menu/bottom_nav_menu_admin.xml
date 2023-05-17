@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_admin_books"
+        android:title="@string/nav_books"
+        android:fontFamily="@font/inter_regular"
+        android:textSize="12sp"
+        android:icon="@drawable/ic_book" />
+    <item
+        android:id="@+id/navigation_add_books"
+        android:title="@string/nav_add_books"
+        android:fontFamily="@font/inter_regular"
+        android:textSize="12sp"
+        android:icon="@drawable/ic_add_book" />
+    <item
+        android:id="@+id/navigation_admin_account"
+        android:title="@string/nav_acc"
+        android:fontFamily="@font/inter_regular"
+        android:textSize="12sp"
+        android:icon="@drawable/ic_acc" />
+</menu>

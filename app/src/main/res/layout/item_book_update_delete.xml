@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="270dp"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_item_image"
+                android:layout_width="115dp"
+                android:layout_height="170dp"
+                style="@style/cardViewItemFav"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <ImageView
+                    android:id="@+id/image_books"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:contentDescription="@string/iv_books_image"
+                    tools:srcCompat="@tools:sample/avatars"/>
+            </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:text="@string/title_of_book"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/inter_bold"
+                android:textAlignment="textStart"
+                android:gravity="start"
+                android:textSize="16sp"
+                android:textColor="@color/text_color"
+                app:layout_constraintBottom_toTopOf="@+id/tv_author"
+                app:layout_constraintTop_toTopOf="@+id/cv_item_image"
+                app:layout_constraintStart_toEndOf="@+id/cv_item_image"/>
+            <TextView
+                android:id="@+id/tv_author"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:text="@string/author_of_book"
+                android:fontFamily="@font/inter_regular"
+                android:textAlignment="textStart"
+                android:gravity="start"
+                android:textSize="14sp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/colorHint"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title"
+                app:layout_constraintStart_toStartOf="@+id/tv_title"/>
+            <TextView
+                android:id="@+id/tv_genre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_book_genre"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/custom_text_corners"
+                android:fontFamily="@font/inter_regular"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:maxLines="1"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@id/cv_item_image"
+                app:layout_constraintBottom_toBottomOf="@+id/cv_item_image"
+                tools:ignore="SmallSp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_id"
+                android:maxLines="0"
+                android:textColor="@android:color/transparent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_description"
+                android:maxLines="0"
+                android:textColor="@android:color/transparent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_pdfUrl"
+                android:maxLines="0"
+                android:textColor="@android:color/transparent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/btn_edit"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:text="@string/text_edit"
+            android:layout_gravity="center_vertical|end"
+            android:layout_margin="10dp"
+            style="@style/CustomButton"/>
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:background="@color/grey"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+</LinearLayout>
