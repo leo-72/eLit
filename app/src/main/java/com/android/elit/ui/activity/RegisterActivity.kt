@@ -186,7 +186,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun checkEmail(email: String, callback: (Boolean) -> Unit) {
-        usersRepository.getUsers().whereEqualTo("email", email)
+        usersRepository.checkEmail(email)
             .get()
             .addOnSuccessListener { result ->
                 val isEmailAvailable = result.isEmpty
@@ -198,7 +198,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun checkUsername(username: String, callback: (Boolean) -> Unit) {
-        usersRepository.getUsers().whereEqualTo("username", username)
+        usersRepository.checkUsername(username)
             .get()
             .addOnSuccessListener { result ->
                 val isUsernameAvailable = result.isEmpty
@@ -210,7 +210,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun checkPhone(phone: String, callback: (Boolean) -> Unit) {
-        usersRepository.getUsers().whereEqualTo("phone", phone)
+        usersRepository.checkPhone(phone)
             .get()
             .addOnSuccessListener { result ->
                 val isPhoneAvailable = result.isEmpty

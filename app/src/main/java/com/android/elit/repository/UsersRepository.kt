@@ -20,9 +20,7 @@ class UsersRepository {
 
     fun getUsers() = usersDao.getUsers()
 
-    fun getUserRef(id: String) = usersDao.getUserRef(id)
-
-    fun getUsersById(id: String) = usersDao.getUsersById(id)
+    fun getUserById(id: String) = usersDao.getUserById(id)
 
     fun checkEmail(email: String) = usersDao.checkEmail(email)
 

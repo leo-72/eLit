@@ -21,9 +21,7 @@ class UsersDao {
 
     fun getUsers() = usersCollection
 
-    fun getUserRef(id: String) = usersCollection.document(id)
-
-    fun getUsersById(id: String) = usersCollection.document(id)
+    fun getUserById(id: String) = usersCollection.document(id)
 
     fun checkEmail(email: String) = usersCollection.whereEqualTo("email", email)
 

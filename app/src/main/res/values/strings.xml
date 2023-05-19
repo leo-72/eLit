@@ -133,4 +133,15 @@
     <string name="error_upload_pdf">Gagal upload pdf</string>
     <string name="error_upload_image">Gagal upload image</string>
     <string name="phone_not_found">Nomor Telepon tidak ditemukan</string>
+    <string name="description_otp">Kode verifikasi telah dikirim ke nomor\n<b>%phone</b>\nHarap periksa pesan masuk dan masukkan kode tersebut di halaman verifikasi.</string>
+    <string name="resend_otp">%resend_otp</string>
+    <string name="tv_resend_otp">Kirim Ulang OTP</string>
+    <string name="text_0">0</string>
+    <string name="otp_sent">OTP terkirim</string>
+    <string name="string_ex_phone">88888888888</string>
+    <string name="description_input_phone_number">Masukkan nomor telepon yang aktif agar dapat menerima code OTP</string>
+    <string name="send_otp">Kirim OTP</string>
+    <string name="verify_otp_code">Verifikasi Kode OTP</string>
+    <string name="country_code_indonesia">+62</string>
+    <string name="not_receive_otp">Tidak menerima OTP?</string>
 </resources>

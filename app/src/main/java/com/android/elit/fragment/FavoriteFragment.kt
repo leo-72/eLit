@@ -4,19 +4,16 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.elit.LoadingDialog
 import com.android.elit.adapter.BooksFavAdapter
-import com.android.elit.adapter.GenreRomanceAdapter
-import com.android.elit.dataclass.FavUsers
 import com.android.elit.databinding.FragmentFavouriteBinding
-import com.android.elit.dataclass.Books
-import com.android.elit.dataclass.Romance
+import com.android.elit.dataclass.FavUsers
 import com.android.elit.repository.UsersRepository
 import com.android.elit.ui.activity.DetailBookActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -59,7 +56,7 @@ class FavoriteFragment : Fragment() {
         setFavBooks()
     }
 
-    private fun actionBar(){
+    private fun actionBar() {
         binding.apply {
             ivBackToolbar.setOnClickListener {
                 requireActivity().onBackPressedDispatcher.onBackPressed()
@@ -68,7 +65,7 @@ class FavoriteFragment : Fragment() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun setFavBooks(){
+    private fun setFavBooks() {
         val onItemClick: (FavUsers) -> Unit = { fav ->
             val intent = Intent(requireContext(), DetailBookActivity::class.java)
             intent.putExtra(DetailBookActivity.EXTRA_ID_BOOK, fav.id)
@@ -102,9 +99,9 @@ class FavoriteFragment : Fragment() {
                 loadingDialog.dismiss()
             }
 
-            if (recyclerView.adapter?.itemCount == 0){
+            if (recyclerView.adapter?.itemCount == 0) {
                 binding.noData.visibility = View.VISIBLE
-            }else{
+            } else {
                 binding.noData.visibility = View.GONE
             }
         }

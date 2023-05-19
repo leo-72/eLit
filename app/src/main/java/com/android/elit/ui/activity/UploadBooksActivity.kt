@@ -9,7 +9,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -18,9 +17,7 @@ import com.android.elit.LoadingDialog
 import com.android.elit.R
 import com.android.elit.databinding.ActivityUploadBooksBinding
 import com.android.elit.repository.BooksRepository
-import com.android.elit.repository.UsersRepository
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -164,7 +161,7 @@ class UploadBooksActivity : AppCompatActivity() {
                 storageImagesRef.putFile(imageUri).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         storageImagesRef.downloadUrl.addOnSuccessListener { imageUri ->
-                            storagePdfsRef.putFile(pdfUri).addOnCompleteListener {task ->
+                            storagePdfsRef.putFile(pdfUri).addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
                                     storagePdfsRef.downloadUrl.addOnSuccessListener { pdfUri ->
                                         val title = tiBookTitle.editText?.text.toString().trim()
@@ -231,7 +228,11 @@ class UploadBooksActivity : AppCompatActivity() {
         binding.apply {
             if (pdfUri == Uri.parse("")) {
                 loadDialog.dismiss()
-                Toast.makeText(this@UploadBooksActivity, getString(R.string.please_select_pdf), Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    this@UploadBooksActivity,
+                    getString(R.string.please_select_pdf),
+                    Toast.LENGTH_SHORT
+                )
                     .show()
             }
         }
@@ -239,9 +240,13 @@ class UploadBooksActivity : AppCompatActivity() {
 
     private fun validImage() {
         binding.apply {
-            if(imageUri == Uri.parse("")) {
+            if (imageUri == Uri.parse("")) {
                 loadDialog.dismiss()
-                Toast.makeText(this@UploadBooksActivity, getString(R.string.image_null), Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    this@UploadBooksActivity,
+                    getString(R.string.image_null),
+                    Toast.LENGTH_SHORT
+                )
                     .show()
             }
         }

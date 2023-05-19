@@ -1,6 +1,5 @@
 package com.android.elit.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,15 +9,12 @@ import com.android.elit.R
 import com.android.elit.databinding.ItemListBookBinding
 import com.android.elit.dataclass.Books
 import com.android.elit.repository.BooksRepository
-import com.bumptech.glide.Glide
-import com.google.firebase.firestore.ListenerRegistration
 import com.squareup.picasso.Picasso
 
 class BookAdapter(
     private val itemList: ArrayList<Books>,
     private val onItemClick: (Books) -> Unit
 ) : RecyclerView.Adapter<BookAdapter.BooksViewHolder>() {
-    private lateinit var listenerRegistration: ListenerRegistration
     private val booksRepository = BooksRepository()
 
     inner class BooksViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -49,8 +45,8 @@ class BookAdapter(
                     val image = it.data?.get("image").toString()
 
                     binding.apply {
-                        itemTitle.text = title
-                        itemAuthor.text = author
+                        itemTitle.setTextEllipsis(title, 30)
+                        itemAuthor.setTextEllipsis(author, 30)
                         itemDescription.text = description
                         itemGenre.text = genre
                         itemPdf.text = pdfUrl
@@ -76,30 +72,4 @@ class BookAdapter(
         val books = itemList[position]
         holder.bind(books)
     }
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun updateData(newList: List<Books>) {
-        itemList.clear()
-        itemList.addAll(newList)
-        notifyDataSetChanged()
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun startListening() {
-        val query = booksRepository.getBooks()
-        listenerRegistration = query.addSnapshotListener { snapshot, exception ->
-            if (exception != null) {
-                return@addSnapshotListener
-            }
-
-            if (snapshot != null) {
-                val updateData = snapshot.toObjects(Books::class.java)
-                itemList.clear()
-                itemList.addAll(updateData)
-                notifyDataSetChanged()
-            }
-        }
-    }
-
-    fun stopListening() = listenerRegistration.remove()
 }

@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.elit.R
 import com.android.elit.databinding.ItemBooksBinding
-import com.android.elit.dataclass.Books
 import com.android.elit.dataclass.Fiction
 import com.bumptech.glide.Glide
 

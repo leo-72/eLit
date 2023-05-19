@@ -82,7 +82,7 @@ class DetailBookActivity : AppCompatActivity() {
         val textView = binding.tvTitleToolbar
 
         val bookId = intent.getStringExtra(EXTRA_ID_BOOK)
-        val bookRef = bookRepository.getBooks().document(bookId.toString())
+        val bookRef = bookRepository.getBooksById(bookId ?: "")
         bookRef.get().addOnSuccessListener {
             if (it != null) {
                 val title = it.data?.get("title").toString()
@@ -109,7 +109,7 @@ class DetailBookActivity : AppCompatActivity() {
         val bookId = intent.getStringExtra(EXTRA_ID_BOOK)
         binding.detailImage.scaleType = ImageView.ScaleType.FIT_XY
 
-        val bookRef = bookRepository.getBooks().document(bookId.toString())
+        val bookRef = bookRepository.getBooksById(bookId ?: "")
         bookRef.get().addOnSuccessListener {
             if (it != null) {
                 val title = it.data?.get("title").toString()
@@ -141,7 +141,7 @@ class DetailBookActivity : AppCompatActivity() {
         val bookId = intent.getStringExtra(EXTRA_ID_BOOK)
 
         loadDialog.show()
-        val bookRef = bookRepository.getBooks().document(bookId.toString())
+        val bookRef = bookRepository.getBooksById(bookId ?: "")
         bookRef.get().addOnSuccessListener {
             if (it != null){
                 val pdfUrl = it.data?.get("pdfUrl").toString()
@@ -252,7 +252,7 @@ class DetailBookActivity : AppCompatActivity() {
 
         val favRef = userRepository.getFavoriteBooks(userId.toString()).document(bookId.toString())
 
-        val bookRef = bookRepository.getBooks().document(bookId.toString())
+        val bookRef = bookRepository.getBooksById(bookId ?: "")
         bookRef.get().addOnSuccessListener {
             if (it != null) {
                 val title = it.data?.get("title").toString()

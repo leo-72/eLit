@@ -11,7 +11,6 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import com.android.elit.R
-import com.google.android.material.textfield.TextInputEditText
 
 class EditTextFullname : AppCompatEditText, View.OnTouchListener {
     private lateinit var clearButton: Drawable

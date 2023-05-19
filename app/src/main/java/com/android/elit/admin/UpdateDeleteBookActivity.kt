@@ -1,5 +1,6 @@
 package com.android.elit.admin
 
+import android.app.Activity
 import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
@@ -28,7 +29,6 @@ class UpdateDeleteBookActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUpdateDeleteBookBinding
     private lateinit var storageImagesRef: StorageReference
     private lateinit var storagePdfsRef: StorageReference
-    private lateinit var storageRef: StorageReference
     private lateinit var bookRepository: BooksRepository
     private lateinit var fs: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
@@ -215,16 +215,24 @@ class UpdateDeleteBookActivity : AppCompatActivity() {
                 loadingDialog.show()
 
                 // Check if image or PDF has changed
-                if ((imageUri != Uri.parse("") && imageUri != Uri.parse(intent.getStringExtra(
-                        EXTRA_IMAGE_BOOK
-                    ))) ||
-                    (pdfUri != Uri.parse("") && pdfUri != Uri.parse(intent.getStringExtra(
-                        EXTRA_PDF_BOOK
-                    )))) {
-                    // First, upload the image (if changed)
-                    if (imageUri != Uri.parse("") && imageUri != Uri.parse(intent.getStringExtra(
+                if ((imageUri != Uri.parse("") && imageUri != Uri.parse(
+                        intent.getStringExtra(
                             EXTRA_IMAGE_BOOK
-                        ))) {
+                        )
+                    )) ||
+                    (pdfUri != Uri.parse("") && pdfUri != Uri.parse(
+                        intent.getStringExtra(
+                            EXTRA_PDF_BOOK
+                        )
+                    ))
+                ) {
+                    // First, upload the image (if changed)
+                    if (imageUri != Uri.parse("") && imageUri != Uri.parse(
+                            intent.getStringExtra(
+                                EXTRA_IMAGE_BOOK
+                            )
+                        )
+                    ) {
                         uploadImageAndUpdateBook(bookRef, updateData)
                     } else {
                         // If the image is not changed, proceed to upload the PDF (if changed)
@@ -238,7 +246,10 @@ class UpdateDeleteBookActivity : AppCompatActivity() {
         }
     }
 
-    private fun uploadImageAndUpdateBook(bookRef: DocumentReference, updateData: HashMap<String, Any>) {
+    private fun uploadImageAndUpdateBook(
+        bookRef: DocumentReference,
+        updateData: HashMap<String, Any>
+    ) {
         val imageFilename = "images/${getFileName(imageUri)}"
         val imageRef = storageImagesRef.child(imageFilename)
 
@@ -256,9 +267,12 @@ class UpdateDeleteBookActivity : AppCompatActivity() {
                 updateData["image"] = downloadUri.toString()
 
                 // Check if the PDF has changed
-                if (pdfUri != Uri.parse("") && pdfUri != Uri.parse(intent.getStringExtra(
-                        EXTRA_PDF_BOOK
-                    ))) {
+                if (pdfUri != Uri.parse("") && pdfUri != Uri.parse(
+                        intent.getStringExtra(
+                            EXTRA_PDF_BOOK
+                        )
+                    )
+                ) {
                     // If the PDF is also changed, upload the PDF
                     uploadPdfAndUpdateBook(bookRef, updateData)
                 } else {
@@ -267,12 +281,19 @@ class UpdateDeleteBookActivity : AppCompatActivity() {
                 }
             } else {
                 loadingDialog.dismiss()
-                Toast.makeText(this@UpdateDeleteBookActivity, "Failed to upload image.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@UpdateDeleteBookActivity,
+                    "Failed to upload image.",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
 
-    private fun uploadPdfAndUpdateBook(bookRef: DocumentReference, updateData: HashMap<String, Any>) {
+    private fun uploadPdfAndUpdateBook(
+        bookRef: DocumentReference,
+        updateData: HashMap<String, Any>
+    ) {
         val pdfFilename = "pdf/${getFileName(pdfUri)}"
         val pdfRef = storagePdfsRef.child(pdfFilename)
 
@@ -293,7 +314,11 @@ class UpdateDeleteBookActivity : AppCompatActivity() {
                 updateBookDetails(bookRef, updateData)
             } else {
                 loadingDialog.dismiss()
-                Toast.makeText(this@UpdateDeleteBookActivity, "Failed to upload PDF.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@UpdateDeleteBookActivity,
+                    "Failed to upload PDF.",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
@@ -302,12 +327,17 @@ class UpdateDeleteBookActivity : AppCompatActivity() {
         bookRef.update(updateData)
             .addOnSuccessListener {
                 loadingDialog.dismiss()
-                Toast.makeText(this@UpdateDeleteBookActivity, "Book updated successfully.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@UpdateDeleteBookActivity,
+                    "Book updated successfully.",
+                    Toast.LENGTH_SHORT
+                ).show()
                 onBackPressedDispatcher.onBackPressed()
             }
             .addOnFailureListener { e ->
                 loadingDialog.dismiss()
-                Toast.makeText(this@UpdateDeleteBookActivity, "Error: $e", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@UpdateDeleteBookActivity, "Error: $e", Toast.LENGTH_SHORT)
+                    .show()
             }
     }
 
@@ -336,34 +366,6 @@ class UpdateDeleteBookActivity : AppCompatActivity() {
         }
     }
 
-    private fun validPdf() {
-        binding.apply {
-            if (pdfUri == Uri.parse("")) {
-                loadingDialog.dismiss()
-                Toast.makeText(
-                    this@UpdateDeleteBookActivity,
-                    getString(R.string.please_select_pdf),
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
-            }
-        }
-    }
-
-    private fun validImage() {
-        binding.apply {
-            if (imageUri == Uri.parse("")) {
-                loadingDialog.dismiss()
-                Toast.makeText(
-                    this@UpdateDeleteBookActivity,
-                    getString(R.string.image_null),
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
-            }
-        }
-    }
-
     private fun selectImage() {
         imageUri = Uri.parse("")
         binding.apply {
@@ -377,26 +379,32 @@ class UpdateDeleteBookActivity : AppCompatActivity() {
         }
     }
 
+    private val pdfPickerActivityResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data: Intent? = result.data
+                if (data != null) {
+                    val selectedPdfUri: Uri? = data.data
+
+                    if (selectedPdfUri != null) {
+                        pdfUri = selectedPdfUri
+                        displayFileName(pdfUri)
+                    }
+                }
+            }
+        }
+
     private fun selectPdf() {
         binding.apply {
             btnSelectPdf.setOnClickListener {
                 val intent = Intent(Intent.ACTION_GET_CONTENT)
                 intent.type = "application/pdf"
-                startActivityForResult(intent, 99)
+                pdfPickerActivityResult.launch(intent)
             }
         }
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 99 && resultCode == RESULT_OK && data != null) {
-            pdfUri = data.data!!
-            displayFileName(pdfUri)
-        }
-    }
-
-    private fun getFileName(uri: Uri?): String?{
+    private fun getFileName(uri: Uri?): String? {
         var fileName: String? = null
         val cursor: Cursor? = contentResolver.query(uri!!, null, null, null, null)
         cursor?.use {

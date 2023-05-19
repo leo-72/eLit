@@ -50,6 +50,7 @@
         <item name="android:textSize">14sp</item>
         <item name="android:padding">18dp</item>
         <item name="android:minHeight">48dp</item>
+        <item name="android:textColor">@color/text_color</item>
         <item name="android:textColorHint">@color/colorHint</item>
         <item name="android:drawablePadding">14dp</item>
     </style>

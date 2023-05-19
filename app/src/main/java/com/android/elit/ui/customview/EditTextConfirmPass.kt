@@ -13,7 +13,6 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import com.android.elit.R
-import com.google.android.material.textfield.TextInputEditText
 
 class EditTextConfirmPass : AppCompatEditText, View.OnTouchListener {
 
@@ -46,7 +45,8 @@ class EditTextConfirmPass : AppCompatEditText, View.OnTouchListener {
     }
 
     private fun init() {
-        passToggle = ContextCompat.getDrawable(context, R.drawable.custom_pass_visible_off) as Drawable
+        passToggle =
+            ContextCompat.getDrawable(context, R.drawable.custom_pass_visible_off) as Drawable
 
         setOnTouchListener(this)
 

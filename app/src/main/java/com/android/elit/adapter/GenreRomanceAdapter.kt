@@ -7,11 +7,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.elit.R
 import com.android.elit.databinding.ItemBooksBinding
-import com.android.elit.dataclass.Fiction
 import com.android.elit.dataclass.Romance
 import com.bumptech.glide.Glide
 
-class GenreRomanceAdapter(private val listItem: ArrayList<Romance>, private val onItemClick: (Romance) -> Unit) :
+class GenreRomanceAdapter(
+    private val listItem: ArrayList<Romance>,
+    private val onItemClick: (Romance) -> Unit
+) :
     RecyclerView.Adapter<GenreRomanceAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -27,7 +29,7 @@ class GenreRomanceAdapter(private val listItem: ArrayList<Romance>, private val 
                 }
             }
 
-            itemView.setOnClickListener{
+            itemView.setOnClickListener {
                 onItemClick(romance)
             }
 

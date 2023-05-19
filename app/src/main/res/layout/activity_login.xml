@@ -20,7 +20,6 @@
             android:text="@string/text_for_login_welcome"
             style="@style/WelcomePageTxt1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,9 +30,8 @@
             android:text="@string/text_for_login_next"
             android:layout_marginTop="-5dp"
             style="@style/WelcomePageTxt2"
-            app:layout_constraintEnd_toEndOf="@+id/txtLoginWelcome"
-            app:layout_constraintHorizontal_bias="0.494"
-            app:layout_constraintStart_toStartOf="@+id/txtLoginWelcome"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtLoginWelcome" />
 
         <com.android.elit.ui.customview.EditTextUsername
@@ -43,8 +41,8 @@
             android:layout_marginTop="50dp"
             android:inputType="text"
             style="@style/EditTextCustom"
-            app:layout_constraintEnd_toEndOf="@+id/txtLoginNext"
-            app:layout_constraintStart_toStartOf="@+id/txtLoginNext"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtLoginNext"/>
 
         <com.android.elit.ui.customview.EditTextPass
@@ -54,8 +52,8 @@
             android:layout_marginTop="20dp"
             android:inputType="textPassword"
             style="@style/EditTextCustom"
-            app:layout_constraintEnd_toEndOf="@+id/inpUsername"
-            app:layout_constraintStart_toStartOf="@+id/inpUsername"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inpUsername"/>
 
         <com.android.elit.ui.customview.ButtonLogin
@@ -64,8 +62,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             style="@style/CustomButton"
-            app:layout_constraintEnd_toEndOf="@+id/inpPass"
-            app:layout_constraintStart_toStartOf="@+id/inpPass"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inpPass" />
 
         <LinearLayout
@@ -75,9 +73,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:gravity="center_horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/btnNewAcc"
-            app:layout_constraintEnd_toEndOf="@+id/btnLogin"
-            app:layout_constraintStart_toStartOf="@+id/btnLogin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnLogin">
 
             <View
@@ -106,11 +103,11 @@
             android:id="@+id/btnNewAcc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="100dp"
+            android:layout_marginTop="20dp"
             style="@style/CustomButton"
-            app:layout_constraintBottom_toTopOf="@+id/txtForgotPass"
-            app:layout_constraintEnd_toEndOf="@+id/component_or"
-            app:layout_constraintStart_toStartOf="@+id/component_or"/>
+            app:layout_constraintTop_toBottomOf="@+id/component_or"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
             android:id="@+id/txtForgotPass"

@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
-import android.util.Patterns
 import android.view.MotionEvent
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -58,14 +57,8 @@ class EditTextPhone : TextInputEditText, View.OnTouchListener {
 
             override fun afterTextChanged(e: Editable) {
                 if (e.toString().isNotEmpty()) showClearButton() else hideClearButton()
-                if (!isValidPhone(e.toString())) {
-                }
             }
         })
-    }
-
-    private fun isValidPhone(phone: CharSequence): Boolean {
-        return Patterns.PHONE.matcher(phone).matches()
     }
 
     private fun showClearButton() {

@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:padding="16dp"
     android:id="@+id/loading_layout"
-    tools:context=".ui.activity.LoadingActivity">
+    tools:context=".LoadingActivity">
 
     <com.github.ybq.android.spinkit.SpinKitView
         android:id="@+id/spin_kit"

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".unused.SendOtpCodeActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/second_color">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/main_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-15dp"
+            style="@style/CustomToolbar"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <ImageView
+                android:id="@+id/iv_back_toolbar"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/left_arrow"
+                android:layout_gravity="start"
+                android:contentDescription="@string/icon_back"
+                android:padding="10dp"
+                app:tint="@color/white"/>
+
+            <TextView
+                android:id="@+id/tv_title_toolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/forgot_pass"
+                style="@style/CustomTitleToolbar"/>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        style="@style/customCardView"
+        android:layout_below="@+id/app_bar_layout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <ImageView
+                android:id="@+id/ivReload"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:src="@drawable/ic_reload"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/image_reload_password" />
+
+            <TextView
+                android:id="@+id/tvDescriptionForgotPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/description_input_phone_number"
+                style="@style/textViewDescription"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivReload"/>
+
+            <LinearLayout
+                android:id="@+id/llPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDescriptionForgotPass">
+
+                <EditText
+                    android:id="@+id/countryCode"
+                    android:layout_width="48dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/country_code_indonesia"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/inter_medium"
+                    android:textColor="@color/text_color"
+                    android:focusable="false"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:background="@drawable/border_edit_text"
+                    android:autofillHints="phone"
+                    android:inputType="textPhonetic"
+                    tools:ignore="LabelFor" />
+
+                <EditText
+                    android:id="@+id/inpPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/inter_medium"
+                    android:textColor="@color/text_color"
+                    android:inputType="phone"
+                    android:hint="@string/string_ex_phone"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/border_edit_text"
+                    android:autofillHints="phone" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnSendOTP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/send_otp"
+                android:fontFamily="@font/inter_bold"
+                style="@style/CustomButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llPhone"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

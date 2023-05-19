@@ -11,6 +11,7 @@ import com.android.elit.LoadingDialog
 import com.android.elit.R
 import com.android.elit.ui.activity.UpdateProfileActivity
 import com.android.elit.databinding.FragmentAccountBinding
+import com.android.elit.repository.UsersRepository
 import com.android.elit.ui.activity.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
@@ -28,6 +29,7 @@ class AccountFragment : Fragment() {
     private lateinit var loadingDialog: LoadingDialog
     private lateinit var documentRef: DocumentReference
     private lateinit var listenerRegistration: ListenerRegistration
+    private val usersRepository = UsersRepository()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -83,8 +85,8 @@ class AccountFragment : Fragment() {
 
     private fun setName(){
         val userId = auth.currentUser?.uid
-        val userDocRef = fs.collection("users").document(userId!!)
-        userDocRef.get().addOnSuccessListener { document ->
+        val userRef = usersRepository.getUserById(userId!!)
+        userRef.get().addOnSuccessListener { document ->
             if (document.exists()){
                 val name = document.getString("fullname")
                 binding.tvNameOfUser.text = name
@@ -120,7 +122,7 @@ class AccountFragment : Fragment() {
 
     private fun autoRefreshUI(){
         val userId = auth.currentUser?.uid
-        documentRef = fs.collection("users").document(userId ?: "")
+        documentRef = usersRepository.getUserById(userId!!)
         listenerRegistration = documentRef.addSnapshotListener { snapshot, error ->
             if (error != null){
                 return@addSnapshotListener

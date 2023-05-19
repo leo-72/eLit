@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/booksAdminFragment"
-        android:name="com.android.elit.admin.Fragment.BooksAdminFragment"
+        android:name="com.android.elit.admin.fragment.BooksAdminFragment"
         android:label="fragment_books_admin"
         tools:layout="@layout/fragment_books_admin" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/addBooksFragment"
-        android:name="com.android.elit.admin.Fragment.AddBooksFragment"
+        android:name="com.android.elit.admin.fragment.AddBooksFragment"
         android:label="fragment_add_books"
         tools:layout="@layout/fragment_add_books" >
         <action

@@ -34,8 +34,8 @@
             android:text="@string/text_for_register_new_acc"
             android:layout_marginTop="-5dp"
             style="@style/WelcomePageTxt2"
-            app:layout_constraintEnd_toEndOf="@+id/txtRegisterCreate"
-            app:layout_constraintStart_toStartOf="@+id/txtRegisterCreate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtRegisterCreate" />
 
         <com.android.elit.ui.customview.EditTextFullname
@@ -45,8 +45,8 @@
             android:layout_marginTop="20dp"
             android:inputType="text"
             style="@style/EditTextCustom"
-            app:layout_constraintEnd_toEndOf="@+id/txtRegisterNewAcc"
-            app:layout_constraintStart_toStartOf="@+id/txtRegisterNewAcc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtRegisterNewAcc"/>
 
         <com.android.elit.ui.customview.EditTextEmail
@@ -56,8 +56,8 @@
             android:layout_marginTop="12dp"
             android:inputType="textEmailAddress"
             style="@style/EditTextCustom"
-            app:layout_constraintEnd_toEndOf="@+id/inpFullname"
-            app:layout_constraintStart_toStartOf="@+id/inpFullname"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inpFullname" />
 
         <com.android.elit.ui.customview.EditTextPhone
@@ -67,8 +67,8 @@
             android:layout_marginTop="12dp"
             android:inputType="phone"
             style="@style/EditTextCustom"
-            app:layout_constraintEnd_toEndOf="@+id/inpEmail"
-            app:layout_constraintStart_toStartOf="@+id/inpEmail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inpEmail"/>
 
         <com.android.elit.ui.customview.EditTextUsername
@@ -78,8 +78,8 @@
             android:layout_marginTop="12dp"
             android:inputType="text"
             style="@style/EditTextCustom"
-            app:layout_constraintEnd_toEndOf="@+id/inpPhone"
-            app:layout_constraintStart_toStartOf="@+id/inpPhone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inpPhone"/>
 
         <com.android.elit.ui.customview.EditTextPass
@@ -89,8 +89,8 @@
             android:layout_marginTop="12dp"
             android:inputType="textPassword"
             style="@style/EditTextCustom"
-            app:layout_constraintEnd_toEndOf="@+id/inpUsername"
-            app:layout_constraintStart_toStartOf="@+id/inpUsername"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inpUsername"/>
 
         <com.android.elit.ui.customview.EditTextConfirmPass
@@ -100,8 +100,8 @@
             android:layout_marginTop="12dp"
             android:inputType="textPassword"
             style="@style/EditTextCustom"
-            app:layout_constraintEnd_toEndOf="@+id/inpPass"
-            app:layout_constraintStart_toStartOf="@+id/inpPass"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inpPass"/>
 
         <com.android.elit.ui.customview.ButtonRegister
@@ -110,20 +110,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             style="@style/CustomButton"
-            app:layout_constraintEnd_toEndOf="@+id/inpConfirmPass"
-            app:layout_constraintStart_toStartOf="@+id/inpConfirmPass"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inpConfirmPass"/>
 
         <LinearLayout
             android:id="@+id/component_or"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="40dp"
             android:gravity="center_horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/txtHaveAcc"
-            app:layout_constraintEnd_toEndOf="@+id/btnRegister"
-            app:layout_constraintStart_toStartOf="@+id/btnRegister"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnRegister">
 
             <View
@@ -155,8 +153,8 @@
             android:text="@string/text_have_acc"
             style="@style/TextUnderline"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/component_or"
-            app:layout_constraintStart_toStartOf="@+id/component_or" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

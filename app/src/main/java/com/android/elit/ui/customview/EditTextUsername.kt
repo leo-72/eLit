@@ -11,7 +11,6 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import com.android.elit.R
-import com.google.android.material.textfield.TextInputEditText
 
 class EditTextUsername : AppCompatEditText, View.OnTouchListener {
     private lateinit var clearButton: Drawable
@@ -36,7 +35,6 @@ class EditTextUsername : AppCompatEditText, View.OnTouchListener {
         super.onDraw(canvas)
         setBackgroundResource(R.drawable.border_edit_text)
         setHint(R.string.text_username)
-        setPadding(52, 20, 52, 20)
         textSize = 14f
         textAlignment = View.TEXT_ALIGNMENT_VIEW_START
     }
@@ -58,6 +56,15 @@ class EditTextUsername : AppCompatEditText, View.OnTouchListener {
             override fun afterTextChanged(e: Editable) {
                 if (e.toString().isNotEmpty()) showClearButton() else hideClearButton()
                 if (e.toString().isEmpty()) {
+                    setBackgroundResource(R.drawable.border_edit_text)
+                    setHint(R.string.text_username)
+                    textSize = 14f
+                    textAlignment = View.TEXT_ALIGNMENT_VIEW_START
+                } else {
+                    setBackgroundResource(R.drawable.border_edit_text)
+                    setHint(R.string.text_username)
+                    textSize = 14f
+                    textAlignment = View.TEXT_ALIGNMENT_VIEW_START
                 }
             }
         })

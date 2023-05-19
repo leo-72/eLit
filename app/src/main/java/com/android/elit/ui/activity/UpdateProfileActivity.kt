@@ -1,18 +1,15 @@
 package com.android.elit.ui.activity
 
 import android.content.ContentValues
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.util.Patterns
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.android.elit.LoadingDialog
 import com.android.elit.R
 import com.android.elit.databinding.ActivityUpdateProfileBinding
 import com.android.elit.repository.UsersRepository
-import com.google.firebase.auth.AuthCredential
-import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.DocumentReference
@@ -41,7 +38,7 @@ class UpdateProfileActivity : AppCompatActivity() {
         updateProfile()
     }
 
-    private fun actionBar(){
+    private fun actionBar() {
         binding.apply {
             ivBackToolbar.setOnClickListener {
                 onBackPressedDispatcher.onBackPressed()
@@ -49,11 +46,11 @@ class UpdateProfileActivity : AppCompatActivity() {
         }
     }
 
-    private fun setProfile(){
+    private fun setProfile() {
         val userId = auth.currentUser?.uid
         val userDocRef = fs.collection("users").document(userId!!)
         userDocRef.get().addOnSuccessListener { document ->
-            if (document.exists()){
+            if (document.exists()) {
                 val name = document.getString("fullname")
                 val email = document.getString("email")
                 val phone = document.getString("phone")
@@ -136,7 +133,8 @@ class UpdateProfileActivity : AppCompatActivity() {
                             if (!isPhoneUnchanged) {
                                 checkPhone(phone) { isPhoneAvailable ->
                                     if (!isPhoneAvailable) {
-                                        inpPhone.error = getString(R.string.phone_already_registered)
+                                        inpPhone.error =
+                                            getString(R.string.phone_already_registered)
                                         inpPhone.requestFocus()
                                         loadingDialog.dismiss()
                                         return@checkPhone
@@ -173,7 +171,13 @@ class UpdateProfileActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateUserProfile(user: FirebaseUser?, userDocRef: DocumentReference, fullname: String, email: String, phone: String) {
+    private fun updateUserProfile(
+        user: FirebaseUser?,
+        userDocRef: DocumentReference,
+        fullname: String,
+        email: String,
+        phone: String
+    ) {
         // Update email and phone
         user?.updateEmail(email)
             ?.addOnSuccessListener {

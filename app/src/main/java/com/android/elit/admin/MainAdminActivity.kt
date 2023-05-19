@@ -3,8 +3,8 @@ package com.android.elit.admin
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.android.elit.R
-import com.android.elit.admin.Fragment.AddBooksFragment
-import com.android.elit.admin.Fragment.BooksAdminFragment
+import com.android.elit.admin.fragment.AddBooksFragment
+import com.android.elit.admin.fragment.BooksAdminFragment
 import com.android.elit.databinding.ActivityMainAdminBinding
 import com.android.elit.fragment.AccountFragment
 

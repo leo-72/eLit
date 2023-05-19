@@ -3,7 +3,6 @@ package com.android.elit.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.elit.R
@@ -11,12 +10,15 @@ import com.android.elit.databinding.ItemBooksBinding
 import com.android.elit.dataclass.Books
 import com.bumptech.glide.Glide
 
-class BooksRecommendAdapter(private val itemList: ArrayList<Books>, private val onItemClick: (Books) -> Unit): RecyclerView.Adapter<BooksRecommendAdapter.BooksViewHolder>(){
+class BooksRecommendAdapter(
+    private val itemList: ArrayList<Books>,
+    private val onItemClick: (Books) -> Unit
+) : RecyclerView.Adapter<BooksRecommendAdapter.BooksViewHolder>() {
 
-    inner class BooksViewHolder(view: View): RecyclerView.ViewHolder(view){
+    inner class BooksViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = ItemBooksBinding.bind(view)
 
-        fun bind(books: Books){
+        fun bind(books: Books) {
             fun TextView.setTextEllipsis(text: String, maxLength: Int) {
                 if (text.length > maxLength) {
                     val truncatedText = text.substring(0, maxLength - 3) + "..."
@@ -26,7 +28,7 @@ class BooksRecommendAdapter(private val itemList: ArrayList<Books>, private val 
                 }
             }
 
-            itemView.setOnClickListener{
+            itemView.setOnClickListener {
                 onItemClick(books)
             }
             binding.itemId.text = books.id.toString()

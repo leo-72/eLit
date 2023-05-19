@@ -2,21 +2,18 @@ package com.android.elit
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.elit.adapter.BookAdapter
-import com.android.elit.adapter.BookSearchAdapter
 import com.android.elit.databinding.ActivityBooksBinding
 import com.android.elit.dataclass.Books
 import com.android.elit.repository.BooksRepository
 import com.android.elit.ui.activity.DetailBookActivity
 import com.google.firebase.auth.FirebaseAuth
-import java.util.ArrayList
 
 class BooksActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBooksBinding
@@ -38,7 +35,7 @@ class BooksActivity : AppCompatActivity() {
         setContent()
     }
 
-    private fun actionBar(){
+    private fun actionBar() {
         binding.apply {
             ivBackToolbar.setOnClickListener {
                 onBackPressedDispatcher.onBackPressed()
@@ -47,7 +44,7 @@ class BooksActivity : AppCompatActivity() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun setContent(){
+    private fun setContent() {
         val onItemClick: (Books) -> Unit = { books ->
             val intent = Intent(this, DetailBookActivity::class.java)
             intent.putExtra(DetailBookActivity.EXTRA_ID_BOOK, books.id)
@@ -74,9 +71,9 @@ class BooksActivity : AppCompatActivity() {
                 bookAdapter.notifyDataSetChanged()
             }
 
-            if (recyclerView.adapter?.itemCount == 0){
+            if (recyclerView.adapter?.itemCount == 0) {
                 binding.noData.visibility = View.VISIBLE
-            }else{
+            } else {
                 binding.noData.visibility = View.GONE
             }
         }
