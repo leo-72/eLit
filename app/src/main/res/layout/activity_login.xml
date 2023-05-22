@@ -12,6 +12,16 @@
         android:layout_height="match_parent"
         android:padding="20dp">
 
+        <ImageView
+            android:id="@+id/translate"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_translation"
+            app:tint="@color/second_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/translate" />
+
         <TextView
             android:id="@+id/txtLoginWelcome"
             android:layout_width="match_parent"

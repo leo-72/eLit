@@ -2,6 +2,7 @@ package com.android.elit.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -103,6 +104,11 @@ class AccountFragment : Fragment() {
             }
             tvChangePassword.setOnClickListener{
                 val intent = Intent(requireContext(), ChangePasswordActivity::class.java)
+                startActivity(intent)
+            }
+            tvChangeLanguage.setOnClickListener {
+                val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }
         }

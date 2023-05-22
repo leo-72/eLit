@@ -2,6 +2,7 @@ package com.android.elit.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
@@ -28,10 +29,21 @@ class LoginActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
+        changeLanguage()
         editTextListener()
         loginUser()
         moveToNewAcc()
         moveToForgotPassword()
+    }
+
+    private fun changeLanguage(){
+        binding.apply {
+            translate.setOnClickListener {
+                val languageSettingsIntent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+                languageSettingsIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(languageSettingsIntent)
+            }
+        }
     }
 
     private fun loginUser() {

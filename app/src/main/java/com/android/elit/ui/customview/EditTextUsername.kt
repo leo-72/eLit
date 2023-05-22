@@ -34,6 +34,7 @@ class EditTextUsername : AppCompatEditText, View.OnTouchListener {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         setBackgroundResource(R.drawable.border_edit_text)
+        setPadding(52, 20, 52, 20)
         setHint(R.string.text_username)
         textSize = 14f
         textAlignment = View.TEXT_ALIGNMENT_VIEW_START

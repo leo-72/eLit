@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.widget.addTextChangedListener
 import com.android.elit.LoadingDialog
 import com.android.elit.R
@@ -27,6 +28,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         fs = FirebaseFirestore.getInstance()
         loadingDialog = LoadingDialog(this)
+        onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
 
         actionBar()
         editTextListener()
@@ -37,6 +39,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
         binding.apply {
             ivBackToolbar.setOnClickListener {
                 onBackPressedDispatcher.onBackPressed()
+                auth.signOut()
             }
         }
     }
@@ -151,5 +154,24 @@ class ForgotPasswordActivity : AppCompatActivity() {
             btnUpdatePassword.isEnabled =
                 newPass.isNotEmpty() && confPass.isNotEmpty()
         }
+    }
+
+    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            auth.signOut()
+            isEnabled = false
+            finish()
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        auth.signOut()
+        finish()
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        auth.signOut()
+        finish()
     }
 }

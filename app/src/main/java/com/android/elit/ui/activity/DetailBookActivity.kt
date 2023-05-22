@@ -305,7 +305,7 @@ class DetailBookActivity : AppCompatActivity() {
         favRef.delete()
             .addOnSuccessListener {
                 loadDialog.dismiss()
-                Toast.makeText(this, getString(R.string.sucess_remove_from_fav), Toast.LENGTH_SHORT)
+                Toast.makeText(this, getString(R.string.success_remove_from_fav), Toast.LENGTH_SHORT)
                     .show()
             }
             .addOnFailureListener {
