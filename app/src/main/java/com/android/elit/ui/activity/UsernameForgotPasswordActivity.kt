@@ -33,6 +33,14 @@ class UsernameForgotPasswordActivity : AppCompatActivity() {
         actionBar()
         editTextListener()
         moveToResetPassword()
+
+
+        binding.apply {
+            tvHaveAcc.setOnClickListener {
+                startActivity(Intent(this@UsernameForgotPasswordActivity, LoginActivity::class.java))
+                finish()
+            }
+        }
     }
 
     private fun actionBar() {
