@@ -97,9 +97,9 @@
                     app:drawableLeftCompat="@drawable/ic_acc"
                     app:drawableTint="@color/black" />
                 <View
-                    android:layout_width="match_parent"
+                    android:layout_width="270dp"
                     android:layout_height="1dp"
-                    android:layout_gravity="center"
+                    android:layout_gravity="end"
                     android:background="@color/colorHint"/>
                 <TextView
                     android:id="@+id/tvChangePassword"
@@ -115,9 +115,9 @@
                     app:drawableLeftCompat="@drawable/ic_pass"
                     app:drawableTint="@color/black" />
                 <View
-                    android:layout_width="match_parent"
+                    android:layout_width="270dp"
                     android:layout_height="1dp"
-                    android:layout_gravity="center"
+                    android:layout_gravity="end"
                     android:background="@color/colorHint"/>
                 <TextView
                     android:id="@+id/tvChangeLanguage"
@@ -133,9 +133,9 @@
                     app:drawableLeftCompat="@drawable/ic_translation"
                     app:drawableTint="@color/black" />
                 <View
-                    android:layout_width="match_parent"
+                    android:layout_width="270dp"
                     android:layout_height="1dp"
-                    android:layout_gravity="center"
+                    android:layout_gravity="end"
                     android:background="@color/colorHint"/>
 
                 <Button
