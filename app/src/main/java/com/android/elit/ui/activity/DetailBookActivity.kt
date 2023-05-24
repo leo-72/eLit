@@ -269,8 +269,7 @@ class DetailBookActivity : AppCompatActivity() {
                     author,
                     desc,
                     genre,
-                    pdfUrl,
-                    true
+                    pdfUrl
                 )
 
                 favRef.set(book)

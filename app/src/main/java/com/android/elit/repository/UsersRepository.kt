@@ -6,8 +6,8 @@ import com.android.elit.dataclass.Users
 class UsersRepository {
     private val usersDao = UsersDao()
 
-    fun addUsers(id: String, user: HashMap<String, String>) {
-        usersDao.addUsers(id,user)
+    fun addUsers(id: String, user: Users) {
+        usersDao.addUsers(id, user)
     }
 
     fun updateUsers(user: Users) {

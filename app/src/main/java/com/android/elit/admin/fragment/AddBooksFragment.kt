@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment
 import com.android.elit.LoadingDialog
 import com.android.elit.R
 import com.android.elit.databinding.FragmentAddBooksBinding
+import com.android.elit.dataclass.Books
 import com.android.elit.repository.BooksRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -177,13 +178,14 @@ class AddBooksFragment : Fragment() {
                                         val author = tiBookAuthor.editText?.text.toString().trim()
                                         val desc = tiBookDesc.editText?.text.toString().trim()
                                         val genre = tiBookGenre.editText?.text.toString().trim()
-                                        val data = hashMapOf(
-                                            "title" to title,
-                                            "author" to author,
-                                            "description" to desc,
-                                            "genre" to genre,
-                                            "image" to imageUri.toString(),
-                                            "pdfUrl" to pdfUri.toString()
+                                        val data = Books(
+                                            "",
+                                            imageUri.toString(),
+                                            title,
+                                            author,
+                                            desc,
+                                            genre,
+                                            pdfUri.toString()
                                         )
                                         fs.collection("books").add(data)
                                             .addOnCompleteListener { task ->

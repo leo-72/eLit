@@ -10,8 +10,7 @@ data class Books(
     var author: String? = null,
     var description: String? = null,
     var genre: String? = null,
-    var pdfUrl: String? = null,
-    val isFav: Boolean = false
+    var pdfUrl: String? = null
     ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -20,8 +19,7 @@ data class Books(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readString(),
-        parcel.readByte() != 0.toByte()
+        parcel.readString()
     ) {
     }
 
@@ -37,9 +35,6 @@ data class Books(
         parcel.writeString(description)
         parcel.writeString(genre)
         parcel.writeString(pdfUrl)
-        parcel.writeByte(if (isFav) 1 else 0)
-
-
     }
 
     companion object CREATOR : Parcelable.Creator<Books> {

@@ -7,7 +7,7 @@ class UsersDao {
     private val db = FirebaseFirestore.getInstance()
     private val usersCollection = db.collection("users")
 
-    fun addUsers(id: String, user: HashMap<String, String>) {
+    fun addUsers(id: String, user: Users) {
         usersCollection.document(id).set(user)
     }
 

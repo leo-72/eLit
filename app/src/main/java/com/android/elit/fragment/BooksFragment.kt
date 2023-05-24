@@ -83,7 +83,6 @@ class BooksFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_books, container, false)
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     private fun appBar() {
         binding.apply {
             etSearchBook.setOnClickListener {

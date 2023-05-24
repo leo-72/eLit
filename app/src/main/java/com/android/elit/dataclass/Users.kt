@@ -10,9 +10,7 @@ data class Users (
     val phone : String? = null,
     val username : String? = null,
     val password : String? = null,
-    val user : String? = null,
-    val role : String? = null,
-    val isFav: List<String> = emptyList()
+    val role : String? = null
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -21,9 +19,7 @@ data class Users (
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.createStringArrayList()!!
+        parcel.readString()
     ) {
     }
 
@@ -34,9 +30,7 @@ data class Users (
         parcel.writeString(phone)
         parcel.writeString(username)
         parcel.writeString(password)
-        parcel.writeString(user)
         parcel.writeString(role)
-        parcel.writeStringList(isFav)
     }
 
     override fun describeContents(): Int {

@@ -11,6 +11,7 @@ import androidx.core.widget.addTextChangedListener
 import com.android.elit.LoadingDialog
 import com.android.elit.R
 import com.android.elit.databinding.ActivityRegisterBinding
+import com.android.elit.dataclass.Users
 import com.android.elit.repository.UsersRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -156,14 +157,14 @@ class RegisterActivity : AppCompatActivity() {
             .addOnCompleteListener(this@RegisterActivity) { task ->
                 if (task.isSuccessful) {
                     firebaseUser = auth.currentUser!!
-                    val user = hashMapOf(
-                        "id" to firebaseUser.uid,
-                        "fullname" to fullname,
-                        "email" to email,
-                        "phone" to phone,
-                        "username" to username,
-                        "password" to password,
-                        "role" to role
+                    val user = Users(
+                        firebaseUser.uid,
+                        fullname,
+                        email,
+                        phone,
+                        username,
+                        password,
+                        role
                     )
                     usersRepository.addUsers(firebaseUser.uid, user)
                     loadingDialog.dismiss()
@@ -257,5 +258,10 @@ class RegisterActivity : AppCompatActivity() {
             btnRegister.isEnabled =
                 fullname.isNotEmpty() && email.isNotEmpty() && phone.isNotEmpty() && username.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        auth.signOut()
     }
 }
