@@ -214,7 +214,6 @@ class UpdateDeleteBookActivity : AppCompatActivity() {
 
                 loadingDialog.show()
 
-                // Check if image or PDF has changed
                 if ((imageUri != Uri.parse("") && imageUri != Uri.parse(
                         intent.getStringExtra(
                             EXTRA_IMAGE_BOOK
@@ -226,7 +225,6 @@ class UpdateDeleteBookActivity : AppCompatActivity() {
                         )
                     ))
                 ) {
-                    // First, upload the image (if changed)
                     if (imageUri != Uri.parse("") && imageUri != Uri.parse(
                             intent.getStringExtra(
                                 EXTRA_IMAGE_BOOK
@@ -235,11 +233,9 @@ class UpdateDeleteBookActivity : AppCompatActivity() {
                     ) {
                         uploadImageAndUpdateBook(bookRef, updateData)
                     } else {
-                        // If the image is not changed, proceed to upload the PDF (if changed)
                         uploadPdfAndUpdateBook(bookRef, updateData)
                     }
                 } else {
-                    // No changes in image or PDF, update book details only
                     updateBookDetails(bookRef, updateData)
                 }
             }
@@ -266,17 +262,14 @@ class UpdateDeleteBookActivity : AppCompatActivity() {
                 val downloadUri = task.result
                 updateData["image"] = downloadUri.toString()
 
-                // Check if the PDF has changed
                 if (pdfUri != Uri.parse("") && pdfUri != Uri.parse(
                         intent.getStringExtra(
                             EXTRA_PDF_BOOK
                         )
                     )
                 ) {
-                    // If the PDF is also changed, upload the PDF
                     uploadPdfAndUpdateBook(bookRef, updateData)
                 } else {
-                    // If the PDF is not changed, update book details only
                     updateBookDetails(bookRef, updateData)
                 }
             } else {
@@ -294,7 +287,7 @@ class UpdateDeleteBookActivity : AppCompatActivity() {
         bookRef: DocumentReference,
         updateData: HashMap<String, Any>
     ) {
-        val pdfFilename = "pdf/${getFileName(pdfUri)}"
+        val pdfFilename = "pdfs/${getFileName(pdfUri)}"
         val pdfRef = storagePdfsRef.child(pdfFilename)
 
         val uploadTask = pdfRef.putFile(pdfUri)
@@ -310,7 +303,6 @@ class UpdateDeleteBookActivity : AppCompatActivity() {
                 val downloadUri = task.result
                 updateData["pdfUrl"] = downloadUri.toString()
 
-                // Update book details after PDF upload
                 updateBookDetails(bookRef, updateData)
             } else {
                 loadingDialog.dismiss()

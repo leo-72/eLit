@@ -59,7 +59,7 @@
             android:name=".LoadingActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.UploadBooksActivity"
+            android:name=".unused.UploadBooksActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.RegisterActivity"

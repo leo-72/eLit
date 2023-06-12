@@ -25,7 +25,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import java.util.*
 
 class AddBooksFragment : Fragment() {
 
@@ -162,8 +161,8 @@ class AddBooksFragment : Fragment() {
     }
 
     private fun uploadBook() {
-        storageImagesRef = storageImagesRef.child(System.currentTimeMillis().toString())
-        storagePdfsRef = storagePdfsRef.child("${UUID.randomUUID()}")
+        storageImagesRef = storageImagesRef.child("images/${System.currentTimeMillis()}.jpg")
+        storagePdfsRef = storagePdfsRef.child("pdfs/${System.currentTimeMillis()}.pdf")
         pdfUri = Uri.parse("")
         binding.apply {
             btnUploadBook.setOnClickListener {
@@ -200,6 +199,7 @@ class AddBooksFragment : Fragment() {
                                                                 getString(R.string.upload_success),
                                                                 Toast.LENGTH_SHORT
                                                             ).show()
+                                                            clearFillInput()
                                                         }.addOnFailureListener {
                                                             loadingDialog.dismiss()
                                                             Toast.makeText(
@@ -227,6 +227,22 @@ class AddBooksFragment : Fragment() {
                     }
                 }
             }
+        }
+    }
+
+    private fun clearFillInput(){
+        binding.apply {
+            tiBookTitle.editText?.setText("")
+            tiBookAuthor.editText?.setText("")
+            tiBookDesc.editText?.setText("")
+            imageBooks.background = ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.no_image
+            )
+            imageBooks.setImageURI(null)
+            namePdf.text = getString(R.string.filename_pdf)
+            imageUri = Uri.EMPTY
+            pdfUri = Uri.EMPTY
         }
     }
 
@@ -314,9 +330,11 @@ class AddBooksFragment : Fragment() {
         }
     }
 
-    private val resultImage = registerForActivityResult(ActivityResultContracts.GetContent()) {
-        imageUri = it!!
-        binding.imageBooks.setImageURI(imageUri)
+    private val resultImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        if (uri!=null){
+            imageUri = uri
+            binding.imageBooks.setImageURI(imageUri)
+        }
     }
 
 }

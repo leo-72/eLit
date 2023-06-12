@@ -80,30 +80,43 @@ class FavoriteFragment : Fragment() {
         recyclerView.adapter = favAdapter
 
         loadingDialog.show()
+        binding.rvFavourite.visibility = View.GONE
 
         val userId = auth.currentUser?.uid
-        usersRepository.getFavoriteBooks(userId.toString()).addSnapshotListener { value, error ->
-            if (error != null) {
-                Log.e("FavBooks", "Error: $error")
+        usersRepository.getFavoriteBooks(userId.toString()).get().addOnSuccessListener { snapshot ->
+            if (snapshot.isEmpty) {
                 loadingDialog.dismiss()
-                return@addSnapshotListener
-            }
-
-            if (value != null) {
-                favList.clear()
-                for (document in value) {
-                    val fav = document.toObject(FavUsers::class.java)
-                    favList.add(fav)
-                }
-                favAdapter.notifyDataSetChanged()
-                loadingDialog.dismiss()
-            }
-
-            if (recyclerView.adapter?.itemCount == 0) {
+                binding.rvFavourite.visibility = View.GONE
                 binding.noData.visibility = View.VISIBLE
-            } else {
-                binding.noData.visibility = View.GONE
+                return@addOnSuccessListener
             }
+
+            usersRepository.getFavoriteBooks(userId.toString()).addSnapshotListener { value, error ->
+                if (error != null) {
+                    Log.e("FavBooks", "Error: $error")
+                    loadingDialog.dismiss()
+                    return@addSnapshotListener
+                }
+
+                if (value != null) {
+                    favList.clear()
+                    for (document in value) {
+                        val fav = document.toObject(FavUsers::class.java)
+                        favList.add(fav)
+                    }
+                    favAdapter.notifyDataSetChanged()
+                    loadingDialog.dismiss()
+                }
+                binding.rvFavourite.visibility = View.VISIBLE
+                if (recyclerView.adapter?.itemCount == 0) {
+                    binding.noData.visibility = View.VISIBLE
+                } else {
+                    binding.noData.visibility = View.GONE
+                }
+            }
+        }.addOnFailureListener { e ->
+            Log.e("TAG", "onFailure: ${e.message}")
+            loadingDialog.dismiss()
         }
     }
 }

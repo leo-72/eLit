@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -108,10 +109,11 @@ class DetailBookActivity : AppCompatActivity() {
     private fun getDetailBook() {
         val bookId = intent.getStringExtra(EXTRA_ID_BOOK)
         binding.detailImage.scaleType = ImageView.ScaleType.FIT_XY
-
+        binding.content.visibility = View.GONE
         val bookRef = bookRepository.getBooksById(bookId ?: "")
         bookRef.get().addOnSuccessListener {
             if (it != null) {
+                binding.content.visibility = View.VISIBLE
                 val title = it.data?.get("title").toString()
                 val author = it.data?.get("author").toString()
                 val genre = it.data?.get("genre").toString()

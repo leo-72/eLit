@@ -72,7 +72,7 @@
     <string name="select_pdf">Select PDF</string>
     <string name="filename_pdf">PDF File Name</string>
     <string name="no_fav_books">Empty Book Favorites</string>
-    <string name="success_remove_from_fav">Berhasil menghapus dari Favorit</string>
+    <string name="success_remove_from_fav">Successfully removed from Favorites</string>
     <string name="failed_remove_from_fav">Failed to remove from Favorites</string>
     <string name="success_add_to_fav">Successfully added to Favorites</string>
     <string name="failed_add_to_fav">Failed to add to Favorites</string>
