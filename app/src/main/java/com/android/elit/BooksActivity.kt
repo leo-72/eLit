@@ -3,6 +3,7 @@ package com.android.elit
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +22,7 @@ class BooksActivity : AppCompatActivity() {
     private lateinit var booksRepository: BooksRepository
     private lateinit var recyclerView: RecyclerView
     private lateinit var bookAdapter: BookAdapter
+    private lateinit var loadingDialog: LoadingDialog
     private val bookList = ArrayList<Books>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +30,7 @@ class BooksActivity : AppCompatActivity() {
         binding = ActivityBooksBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        loadingDialog = LoadingDialog(this)
         auth = FirebaseAuth.getInstance()
         booksRepository = BooksRepository()
 
@@ -51,32 +54,51 @@ class BooksActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        loadingDialog.show()
+        binding.rvBooks.visibility = View.GONE
+        binding.noData.visibility = View.GONE
+
         bookAdapter = BookAdapter(bookList, onItemClick)
         recyclerView = binding.rvBooks
         recyclerView.layoutManager = GridLayoutManager(this, 2)
         recyclerView.adapter = bookAdapter
 
-        booksRepository.getBooks().addSnapshotListener { value, error ->
-            if (error != null) {
-                Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show()
-                return@addSnapshotListener
-            }
-
-            if (value != null) {
-                bookList.clear()
-                for (document in value) {
-                    val book = document.toObject(Books::class.java)
-                    bookList.add(book)
-                }
-                bookAdapter.notifyDataSetChanged()
-            }
-
-            if (recyclerView.adapter?.itemCount == 0) {
+        booksRepository.getBooks().get().addOnSuccessListener { snapshot ->
+            if (snapshot.isEmpty) {
+                loadingDialog.dismiss()
+                binding.rvBooks.visibility = View.GONE
                 binding.noData.visibility = View.VISIBLE
-            } else {
-                binding.noData.visibility = View.GONE
+                return@addOnSuccessListener
             }
-        }
+
+            booksRepository.getBooks().addSnapshotListener { value, error ->
+                if (error != null) {
+                    Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show()
+                    loadingDialog.dismiss()
+                    return@addSnapshotListener
+                }
+
+                if (value != null) {
+                    bookList.clear()
+                    for (document in value) {
+                        val book = document.toObject(Books::class.java)
+                        bookList.add(book)
+                    }
+                    bookAdapter.notifyDataSetChanged()
+                    loadingDialog.dismiss()
+                }
+
+                binding.rvBooks.visibility = View.VISIBLE
+
+                if (recyclerView.adapter?.itemCount == 0) {
+                    binding.noData.visibility = View.VISIBLE
+                } else {
+                    binding.noData.visibility = View.GONE
+                }
+            }
+        }.addOnFailureListener { error ->
+            Log.e("Error", error.message.toString())
+            loadingDialog.dismiss() }
 
     }
 }

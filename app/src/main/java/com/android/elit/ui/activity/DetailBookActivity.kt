@@ -277,21 +277,9 @@ class DetailBookActivity : AppCompatActivity() {
                 favRef.set(book)
                     .addOnSuccessListener {
                         loadDialog.dismiss()
-                        Toast.makeText(
-                            this,
-                            getString(R.string.success_add_to_fav),
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
                     }
                     .addOnFailureListener {
                         loadDialog.dismiss()
-                        Toast.makeText(
-                            this,
-                            getString(R.string.failed_add_to_fav),
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
                     }
             }
         }
@@ -306,13 +294,9 @@ class DetailBookActivity : AppCompatActivity() {
         favRef.delete()
             .addOnSuccessListener {
                 loadDialog.dismiss()
-                Toast.makeText(this, getString(R.string.success_remove_from_fav), Toast.LENGTH_SHORT)
-                    .show()
             }
             .addOnFailureListener {
                 loadDialog.dismiss()
-                Toast.makeText(this, getString(R.string.failed_remove_from_fav), Toast.LENGTH_SHORT)
-                    .show()
             }
     }
 }
