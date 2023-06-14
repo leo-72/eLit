@@ -14,7 +14,6 @@ class BookSearchAdapter(
     private val itemList: ArrayList<Books>,
     private val onItemClick: (Books) -> Unit
 ) : RecyclerView.Adapter<BookSearchAdapter.BooksViewHolder>() {
-    private val booksRepository = BooksRepository()
 
     inner class BooksViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = ItemListSearchBookBinding.bind(view)
@@ -24,28 +23,15 @@ class BookSearchAdapter(
                 onItemClick(books)
             }
 
-            val bookId = books.id
-            val bookRef = booksRepository.getBooksById(bookId.toString())
-            bookRef.get().addOnSuccessListener {
-                if (it != null) {
-                    val title = it.data?.get("title").toString()
-                    val author = it.data?.get("author").toString()
-                    val description = it.data?.get("description").toString()
-                    val genre = it.data?.get("genre").toString()
-                    val pdfUrl = it.data?.get("pdfUrl").toString()
-                    val image = it.data?.get("image").toString()
-
-                    binding.apply {
-                        tvTitle.text = title
-                        tvAuthor.text = author
-                        tvDescription.text = description
-                        tvGenre.text = genre
-                        tvPdfUrl.text = pdfUrl
-                        Glide.with(itemView.context)
-                            .load(image)
-                            .into(imageBooks)
-                    }
-                }
+            binding.apply {
+                tvTitle.text = books.title
+                tvAuthor.text = books.author
+                tvDescription.text = books.description
+                tvGenre.text = books.genre
+                tvPdfUrl.text = books.pdfUrl
+                Glide.with(itemView.context)
+                    .load(books.image)
+                    .into(imageBooks)
             }
         }
 

@@ -161,36 +161,44 @@ class DetailBookActivity : AppCompatActivity() {
                         Log.d("TAG", "get failed with ", exception)
                     }
             }
+            loadDialog.dismiss()
+            Toast.makeText(this, R.string.downloading, Toast.LENGTH_SHORT).show()
         }
 
     }
 
     private fun downloadPdfUrlManager(uri: String?) {
-        val title = intent.getStringExtra(DETAIL_TITLE)
-        val request = DownloadManager.Request(Uri.parse(uri))
-        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
-        request.setTitle(title)
-        request.setDescription("Downloading Novel $title")
-        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-        request.setDestinationInExternalFilesDir(
-            this,
-            Environment.DIRECTORY_DOWNLOADS,
-            "$title.pdf"
-        )
+        val bookId = intent.getStringExtra(EXTRA_ID_BOOK)
+        bookRepository.getBooksById(bookId.toString()).get().addOnSuccessListener {
+            if (it != null){
+                val title = it.data?.get("title").toString()
+                val request = DownloadManager.Request(Uri.parse(uri))
+                request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
+                request.setTitle(title)
+                request.setDescription("Downloading Novel $title")
+                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
+                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                request.setDestinationInExternalFilesDir(
+                    this,
+                    Environment.DIRECTORY_DOWNLOADS,
+                    "$title.pdf"
+                )
 
-        val manager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-        val download = manager.enqueue(request)
+                val manager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+                val download = manager.enqueue(request)
 
-        val onComplete = object : BroadcastReceiver() {
-            override fun onReceive(context: Context?, intent: Intent?) {
-                if (download == intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)) {
-                    Log.d("TAG", "onReceive: Download Complete")
-                    loadDialog.dismiss()
+                val onComplete = object : BroadcastReceiver() {
+                    override fun onReceive(context: Context?, intent: Intent?) {
+                        if (download == intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)) {
+                            Log.d("TAG", "Download Completed")
+                        }
+                    }
                 }
+                registerReceiver(onComplete, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
             }
+        }.addOnFailureListener { e ->
+            Log.w("TAG", "Error adding document", e)
         }
-
-        registerReceiver(onComplete, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
     }
 
     private fun toggleFav() {

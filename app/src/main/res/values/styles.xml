@@ -239,6 +239,13 @@
         <item name="android:gravity">center</item>
         <item name="android:maxLines">1</item>
     </style>
+    <style name="TitleDetailDesc" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/inter_bold</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:gravity">left</item>
+        <item name="android:layout_margin">20dp</item>
+    </style>
     <style name="DetailDesc" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">@font/inter_regular</item>

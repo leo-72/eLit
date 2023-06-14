@@ -46,6 +46,8 @@ class FavoriteFragment : Fragment() {
         fs = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
         loadingDialog = LoadingDialog(requireContext())
+        loadingDialog.show()
+        binding.rvFavourite.visibility = View.GONE
 
         with(binding) {
             rvFavourite.setHasFixedSize(true)
@@ -66,10 +68,10 @@ class FavoriteFragment : Fragment() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun setFavBooks() {
+
         val onItemClick: (FavUsers) -> Unit = { fav ->
             val intent = Intent(requireContext(), DetailBookActivity::class.java)
             intent.putExtra(DetailBookActivity.EXTRA_ID_BOOK, fav.id)
-            intent.putExtra(DetailBookActivity.DETAIL_TITLE, fav.title)
             startActivity(intent)
         }
 
@@ -79,14 +81,10 @@ class FavoriteFragment : Fragment() {
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = favAdapter
 
-        loadingDialog.show()
-        binding.rvFavourite.visibility = View.GONE
-
         val userId = auth.currentUser?.uid
         usersRepository.getFavoriteBooks(userId.toString()).get().addOnSuccessListener { snapshot ->
             if (snapshot.isEmpty) {
                 loadingDialog.dismiss()
-                binding.rvFavourite.visibility = View.GONE
                 binding.noData.visibility = View.VISIBLE
                 return@addOnSuccessListener
             }
@@ -105,15 +103,20 @@ class FavoriteFragment : Fragment() {
                         favList.add(fav)
                     }
                     favAdapter.notifyDataSetChanged()
-                    loadingDialog.dismiss()
                 }
+
+                loadingDialog.dismiss()
+
                 binding.rvFavourite.visibility = View.VISIBLE
                 if (recyclerView.adapter?.itemCount == 0) {
                     binding.noData.visibility = View.VISIBLE
                 } else {
                     binding.noData.visibility = View.GONE
                 }
+
+                loadingDialog.dismiss()
             }
+            loadingDialog.dismiss()
         }.addOnFailureListener { e ->
             Log.e("TAG", "onFailure: ${e.message}")
             loadingDialog.dismiss()

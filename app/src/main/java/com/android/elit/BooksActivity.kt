@@ -3,7 +3,6 @@ package com.android.elit
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -48,57 +47,34 @@ class BooksActivity : AppCompatActivity() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun setContent() {
+        loadingDialog.show()
+
         val onItemClick: (Books) -> Unit = { books ->
             val intent = Intent(this, DetailBookActivity::class.java)
             intent.putExtra(DetailBookActivity.EXTRA_ID_BOOK, books.id)
             startActivity(intent)
         }
 
-        loadingDialog.show()
-        binding.rvBooks.visibility = View.GONE
-        binding.noData.visibility = View.GONE
-
         bookAdapter = BookAdapter(bookList, onItemClick)
         recyclerView = binding.rvBooks
         recyclerView.layoutManager = GridLayoutManager(this, 2)
         recyclerView.adapter = bookAdapter
 
-        booksRepository.getBooks().get().addOnSuccessListener { snapshot ->
-            if (snapshot.isEmpty) {
+        booksRepository.getBooks().get().addOnSuccessListener { result ->
+            if (result != null) {
+                val books = result.toObjects(Books::class.java)
+                bookList.addAll(books)
+                bookAdapter.notifyDataSetChanged()
                 loadingDialog.dismiss()
-                binding.rvBooks.visibility = View.GONE
-                binding.noData.visibility = View.VISIBLE
-                return@addOnSuccessListener
             }
-
-            booksRepository.getBooks().addSnapshotListener { value, error ->
-                if (error != null) {
-                    Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show()
-                    loadingDialog.dismiss()
-                    return@addSnapshotListener
-                }
-
-                if (value != null) {
-                    bookList.clear()
-                    for (document in value) {
-                        val book = document.toObject(Books::class.java)
-                        bookList.add(book)
-                    }
-                    bookAdapter.notifyDataSetChanged()
-                    loadingDialog.dismiss()
-                }
-
-                binding.rvBooks.visibility = View.VISIBLE
-
-                if (recyclerView.adapter?.itemCount == 0) {
-                    binding.noData.visibility = View.VISIBLE
-                } else {
-                    binding.noData.visibility = View.GONE
-                }
-            }
-        }.addOnFailureListener { error ->
-            Log.e("Error", error.message.toString())
-            loadingDialog.dismiss() }
-
+            loadingDialog.dismiss()
+        }.addOnFailureListener {
+            Toast.makeText(
+                this,
+                getString(R.string.failed_to_load_data),
+                Toast.LENGTH_SHORT
+            ).show()
+            loadingDialog.dismiss()
+        }
     }
 }

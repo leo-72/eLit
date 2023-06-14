@@ -8,15 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.elit.R
 import com.android.elit.databinding.ItemListBookBinding
 import com.android.elit.dataclass.Books
-import com.android.elit.repository.BooksRepository
 import com.squareup.picasso.Picasso
 
 class BookAdapter(
     private val itemList: ArrayList<Books>,
     private val onItemClick: (Books) -> Unit
 ) : RecyclerView.Adapter<BookAdapter.BooksViewHolder>() {
-    private val booksRepository = BooksRepository()
-
     inner class BooksViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = ItemListBookBinding.bind(view)
 
@@ -32,27 +29,13 @@ class BookAdapter(
             itemView.setOnClickListener {
                 onItemClick(books)
             }
-
-            val bookId = books.id
-            val bookRef = booksRepository.getBooksById(bookId.toString())
-            bookRef.get().addOnSuccessListener {
-                if (it != null) {
-                    val title = it.data?.get("title").toString()
-                    val author = it.data?.get("author").toString()
-                    val description = it.data?.get("description").toString()
-                    val genre = it.data?.get("genre").toString()
-                    val pdfUrl = it.data?.get("pdfUrl").toString()
-                    val image = it.data?.get("image").toString()
-
-                    binding.apply {
-                        itemTitle.setTextEllipsis(title, 30)
-                        itemAuthor.setTextEllipsis(author, 30)
-                        itemDescription.text = description
-                        itemGenre.text = genre
-                        itemPdf.text = pdfUrl
-                        Picasso.get().load(image).into(itemImage)
-                    }
-                }
+            binding.apply {
+                itemTitle.setTextEllipsis(books.title.toString(), 30)
+                itemAuthor.setTextEllipsis(books.author.toString(), 30)
+                itemDescription.text = books.description
+                itemGenre.text = books.genre
+                itemPdf.text = books.pdfUrl
+                Picasso.get().load(books.image).into(itemImage)
             }
         }
 

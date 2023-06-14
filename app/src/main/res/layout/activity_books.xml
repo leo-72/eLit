@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".BooksActivity">
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/no_data"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:lottie_rawRes="@raw/no_data"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"/>
-
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"

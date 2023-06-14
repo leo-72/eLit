@@ -118,7 +118,6 @@ class BooksFragment : Fragment() {
         val onItemClick: (Books) -> Unit = { books ->
             val intent = Intent(requireContext(), DetailBookActivity::class.java)
             intent.putExtra(DetailBookActivity.EXTRA_ID_BOOK, books.id)
-            intent.putExtra(DetailBookActivity.DETAIL_TITLE, books.title)
             startActivity(intent)
         }
 
@@ -161,7 +160,6 @@ class BooksFragment : Fragment() {
         val onItemClick: (Fiction) -> Unit = { fiction ->
             val intent = Intent(requireContext(), DetailBookActivity::class.java)
             intent.putExtra(DetailBookActivity.EXTRA_ID_BOOK, fiction.id)
-            intent.putExtra(DetailBookActivity.DETAIL_TITLE, fiction.title)
             startActivity(intent)
         }
 
@@ -202,7 +200,6 @@ class BooksFragment : Fragment() {
         val onItemClick: (Romance) -> Unit = { romance ->
             val intent = Intent(requireContext(), DetailBookActivity::class.java)
             intent.putExtra(DetailBookActivity.EXTRA_ID_BOOK, romance.id)
-            intent.putExtra(DetailBookActivity.DETAIL_TITLE, romance.title)
             startActivity(intent)
         }
 

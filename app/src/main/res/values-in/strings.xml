@@ -146,4 +146,7 @@
     <string name="choose_language">Pilih Bahasa</string>
     <string name="cancel">Batal</string>
     <string name="change_language">Ubah Bahasa</string>
+    <string name="synopsis">Sinopsis</string>
+    <string name="downloading">Downloading...</string>
+    <string name="nullable">null</string>
 </resources>
