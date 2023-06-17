@@ -3,7 +3,7 @@ package com.android.elit.dao
 import com.android.elit.dataclass.Users
 import com.google.firebase.firestore.FirebaseFirestore
 
-class UsersDao {
+class UserDao {
     private val db = FirebaseFirestore.getInstance()
     private val usersCollection = db.collection("users")
 
@@ -11,12 +11,12 @@ class UsersDao {
         usersCollection.document(id).set(user)
     }
 
-    fun updateUsers(user: Users) {
-        usersCollection.document(user.id.toString()).set(user)
+    fun updateUser(id: String, key: String, value: String) {
+        getUserById(id).update(key, value)
     }
 
-    fun deleteUsers(user: Users) {
-        usersCollection.document(user.id.toString()).delete()
+    fun deleteUsers(id: String) {
+        usersCollection.document(id).delete()
     }
 
     fun getUsers() = usersCollection

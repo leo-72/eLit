@@ -14,7 +14,7 @@ import com.android.elit.LoadingDialog
 import com.android.elit.adapter.BooksFavAdapter
 import com.android.elit.databinding.FragmentFavouriteBinding
 import com.android.elit.dataclass.FavUsers
-import com.android.elit.repository.UsersRepository
+import com.android.elit.repository.UserRepository
 import com.android.elit.ui.activity.DetailBookActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -29,7 +29,7 @@ class FavoriteFragment : Fragment() {
     private lateinit var loadingDialog: LoadingDialog
     private lateinit var auth: FirebaseAuth
     private val favList = ArrayList<FavUsers>()
-    private val usersRepository = UsersRepository()
+    private val usersRepository = UserRepository()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

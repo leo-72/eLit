@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.elit.*
 import com.android.elit.admin.MainAdminActivity
 import com.android.elit.databinding.ActivityLoginBinding
-import com.android.elit.repository.UsersRepository
+import com.android.elit.repository.UserRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -20,7 +20,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var firebaseUser: FirebaseUser
     private val loadingDialog = LoadingDialog(this)
-    private val usersRepository = UsersRepository()
+    private val usersRepository = UserRepository()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

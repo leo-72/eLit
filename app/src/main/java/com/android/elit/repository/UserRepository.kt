@@ -1,21 +1,21 @@
 package com.android.elit.repository
 
-import com.android.elit.dao.UsersDao
+import com.android.elit.dao.UserDao
 import com.android.elit.dataclass.Users
 
-class UsersRepository {
-    private val usersDao = UsersDao()
+class UserRepository {
+    private val usersDao = UserDao()
 
     fun addUsers(id: String, user: Users) {
         usersDao.addUsers(id, user)
     }
 
-    fun updateUsers(user: Users) {
-        usersDao.updateUsers(user)
+    fun updateUser(user: String, key: String, value: String) {
+        usersDao.updateUser(user, key, value)
     }
 
-    fun deleteUsers(user: Users) {
-        usersDao.deleteUsers(user)
+    fun deleteUsers(id: String) {
+        usersDao.deleteUsers(id)
     }
 
     fun getUsers() = usersDao.getUsers()

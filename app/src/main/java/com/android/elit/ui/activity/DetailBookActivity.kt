@@ -24,7 +24,7 @@ import com.android.elit.R
 import com.android.elit.databinding.ActivityDetailBookBinding
 import com.android.elit.dataclass.Books
 import com.android.elit.repository.BooksRepository
-import com.android.elit.repository.UsersRepository
+import com.android.elit.repository.UserRepository
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import kotlin.math.abs
@@ -35,11 +35,10 @@ class DetailBookActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private val loadDialog = LoadingDialog(this)
     private val bookRepository = BooksRepository()
-    private val userRepository = UsersRepository()
+    private val userRepository = UserRepository()
 
     companion object {
         const val EXTRA_ID_BOOK = "id_book"
-        const val DETAIL_TITLE = "detail_title"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

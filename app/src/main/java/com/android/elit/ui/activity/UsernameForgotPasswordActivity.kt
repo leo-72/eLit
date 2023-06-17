@@ -8,7 +8,7 @@ import androidx.core.widget.addTextChangedListener
 import com.android.elit.LoadingDialog
 import com.android.elit.R
 import com.android.elit.databinding.ActivityUsernameForgotPasswordBinding
-import com.android.elit.repository.UsersRepository
+import com.android.elit.repository.UserRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
@@ -19,7 +19,7 @@ class UsernameForgotPasswordActivity : AppCompatActivity() {
     private lateinit var fs: FirebaseFirestore
     private lateinit var firebaseUser: FirebaseUser
     private lateinit var loadingDialog: LoadingDialog
-    private val usersRepository = UsersRepository()
+    private val usersRepository = UserRepository()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

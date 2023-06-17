@@ -12,7 +12,7 @@ import com.android.elit.LoadingDialog
 import com.android.elit.R
 import com.android.elit.databinding.ActivityRegisterBinding
 import com.android.elit.dataclass.Users
-import com.android.elit.repository.UsersRepository
+import com.android.elit.repository.UserRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
@@ -25,7 +25,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var firebaseUser: FirebaseUser
     private lateinit var database: DatabaseReference
     private val loadingDialog = LoadingDialog(this)
-    private val usersRepository = UsersRepository()
+    private val usersRepository = UserRepository()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +54,6 @@ class RegisterActivity : AppCompatActivity() {
                 val username = inpUsername.text.toString().trim()
                 val password = inpPass.text.toString().trim()
                 val confirmPassword = inpConfirmPass.text.toString().trim()
-                val role = "user"
 
                 if (fullname.isEmpty()) {
                     inpFullname.error = getString(R.string.alert_fullname)
@@ -120,8 +119,7 @@ class RegisterActivity : AppCompatActivity() {
                                             password,
                                             fullname,
                                             phone,
-                                            username,
-                                            role
+                                            username
                                         )
                                     } else {
                                         inpUsername.error = getString(R.string.username_already_registered)
@@ -150,8 +148,7 @@ class RegisterActivity : AppCompatActivity() {
         password: String,
         fullname: String,
         phone: String,
-        username: String,
-        role: String
+        username: String
     ) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this@RegisterActivity) { task ->
@@ -164,7 +161,7 @@ class RegisterActivity : AppCompatActivity() {
                         phone,
                         username,
                         password,
-                        role
+                        "user"
                     )
                     usersRepository.addUsers(firebaseUser.uid, user)
                     loadingDialog.dismiss()

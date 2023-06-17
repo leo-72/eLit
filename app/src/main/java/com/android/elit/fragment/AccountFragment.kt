@@ -12,7 +12,7 @@ import com.android.elit.LoadingDialog
 import com.android.elit.R
 import com.android.elit.ui.activity.UpdateProfileActivity
 import com.android.elit.databinding.FragmentAccountBinding
-import com.android.elit.repository.UsersRepository
+import com.android.elit.repository.UserRepository
 import com.android.elit.ui.activity.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
@@ -30,7 +30,7 @@ class AccountFragment : Fragment() {
     private lateinit var loadingDialog: LoadingDialog
     private lateinit var documentRef: DocumentReference
     private lateinit var listenerRegistration: ListenerRegistration
-    private val usersRepository = UsersRepository()
+    private val usersRepository = UserRepository()
 
     override fun onCreateView(
         inflater: LayoutInflater,

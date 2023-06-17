@@ -336,5 +336,4 @@ class AddBooksFragment : Fragment() {
             binding.imageBooks.setImageURI(imageUri)
         }
     }
-
 }

@@ -17,6 +17,7 @@ import com.android.elit.LoadingDialog
 import com.android.elit.R
 import com.android.elit.databinding.ActivityUpdateDeleteBookBinding
 import com.android.elit.repository.BooksRepository
+import com.android.elit.repository.UserRepository
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
@@ -30,6 +31,7 @@ class UpdateDeleteBookActivity : AppCompatActivity() {
     private lateinit var storageImagesRef: StorageReference
     private lateinit var storagePdfsRef: StorageReference
     private lateinit var bookRepository: BooksRepository
+    private lateinit var userRepository: UserRepository
     private lateinit var fs: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
     private lateinit var imageUri: Uri
@@ -44,6 +46,7 @@ class UpdateDeleteBookActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         fs = FirebaseFirestore.getInstance()
         bookRepository = BooksRepository()
+        userRepository = UserRepository()
         loadingDialog = LoadingDialog(this)
         imageUri = Uri.parse("")
         pdfUri = Uri.parse("")
@@ -345,14 +348,33 @@ class UpdateDeleteBookActivity : AppCompatActivity() {
                             getString(R.string.book_deleted),
                             Toast.LENGTH_SHORT
                         ).show()
-                        onBackPressedDispatcher.onBackPressed()
-                    }.addOnFailureListener { e ->
-                        loadingDialog.dismiss()
-                        Toast.makeText(
-                            this@UpdateDeleteBookActivity,
-                            "Error: $e",
-                            Toast.LENGTH_SHORT
-                        ).show()
+
+                        userRepository.getUsers().get().addOnSuccessListener { querySnapshot ->
+                            for (doc in querySnapshot) {
+                                userRepository.getFavoriteBooks(doc.id).whereEqualTo("id", bookId)
+                                    .get()
+                                    .addOnSuccessListener { favQuerySnapshot ->
+                                        for (favDoc in favQuerySnapshot) {
+                                            favDoc.reference.delete()
+                                        }
+                                    }.addOnFailureListener { e ->
+                                        loadingDialog.dismiss()
+                                        Toast.makeText(
+                                            this@UpdateDeleteBookActivity,
+                                            "Error: $e",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                            }
+                            onBackPressedDispatcher.onBackPressed()
+                        }.addOnFailureListener { e ->
+                            loadingDialog.dismiss()
+                            Toast.makeText(
+                                this@UpdateDeleteBookActivity,
+                                "Error: $e",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
             }
         }

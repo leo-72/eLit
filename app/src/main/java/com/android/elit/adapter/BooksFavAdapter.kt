@@ -14,9 +14,6 @@ class BooksFavAdapter(
     private val itemList: List<FavUsers>,
     private val onItemClick: (FavUsers) -> Unit
 ) : RecyclerView.Adapter<BooksFavAdapter.ViewHolder>() {
-
-    private val booksRepository = BooksRepository()
-
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = ItemFavouriteBinding.bind(itemView)
 
@@ -24,29 +21,15 @@ class BooksFavAdapter(
             itemView.setOnClickListener {
                 onItemClick(favBooks)
             }
-
-            val bookId = favBooks.id
-            val bookRef = booksRepository.getBooksById(bookId.toString())
-            bookRef.get().addOnSuccessListener {
-                if (it != null) {
-                    val title = it.data?.get("title").toString()
-                    val author = it.data?.get("author").toString()
-                    val description = it.data?.get("description").toString()
-                    val genre = it.data?.get("genre").toString()
-                    val pdfUrl = it.data?.get("pdfUrl").toString()
-                    val image = it.data?.get("image").toString()
-
-                    binding.apply {
-                        tvTitle.text = title
-                        tvAuthor.text = author
-                        tvDescription.text = description
-                        tvGenre.text = genre
-                        tvPdfUrl.text = pdfUrl
-                        Glide.with(itemView.context)
-                            .load(image)
-                            .into(imageBooks)
-                    }
-                }
+            binding.apply {
+                tvTitle.text = favBooks.title
+                tvAuthor.text = favBooks.author
+                tvDescription.text = favBooks.description
+                tvGenre.text = favBooks.genre
+                tvPdfUrl.text = favBooks.pdfUrl
+                Glide.with(itemView.context)
+                    .load(favBooks.image)
+                    .into(imageBooks)
             }
         }
     }

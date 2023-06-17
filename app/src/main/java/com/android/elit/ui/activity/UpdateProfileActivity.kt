@@ -9,7 +9,7 @@ import androidx.core.widget.addTextChangedListener
 import com.android.elit.LoadingDialog
 import com.android.elit.R
 import com.android.elit.databinding.ActivityUpdateProfileBinding
-import com.android.elit.repository.UsersRepository
+import com.android.elit.repository.UserRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.DocumentReference
@@ -20,7 +20,7 @@ class UpdateProfileActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var fs: FirebaseFirestore
     private lateinit var loadingDialog: LoadingDialog
-    private val usersRepository = UsersRepository()
+    private val usersRepository = UserRepository()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,7 +81,7 @@ class UpdateProfileActivity : AppCompatActivity() {
                 // Get the current user data
                 val user = auth.currentUser
                 val userId = auth.currentUser?.uid
-                val userDocRef = fs.collection("users").document(userId!!)
+                val userDocRef = usersRepository.getUserById(userId!!)
 
                 userDocRef.get().addOnSuccessListener { document ->
                     if (document.exists()) {
