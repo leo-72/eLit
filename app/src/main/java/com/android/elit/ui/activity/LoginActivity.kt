@@ -70,14 +70,21 @@ class LoginActivity : AppCompatActivity() {
 
                 loadingDialog.show()
                 usersRepository.getUsers().get().addOnSuccessListener { documents ->
+                    var isUsernameMatched = false
+                    var isPasswordMatched = false
+
                     for (document in documents) {
                         if (document.data["username"] == username) {
-                            if (document.data["role"] == "user") {
-                                auth.signInWithEmailAndPassword(
-                                    document.data["email"].toString(),
-                                    password
-                                )
-                                    .addOnCompleteListener(this@LoginActivity) { task ->
+                            isUsernameMatched = true
+
+                            if (document.data["password"] == password) {
+                                isPasswordMatched = true
+
+                                if (document.data["role"] == "user") {
+                                    auth.signInWithEmailAndPassword(
+                                        document.data["email"].toString(),
+                                        password
+                                    ).addOnCompleteListener(this@LoginActivity) { task ->
                                         if (task.isSuccessful) {
                                             clearInput()
                                             firebaseUser = auth.currentUser!!
@@ -87,27 +94,22 @@ class LoginActivity : AppCompatActivity() {
                                                     MainActivity::class.java
                                                 )
                                             )
+                                            loadingDialog.dismiss()
                                             finish()
-                                        } else if (document.data["password"] != password) {
-                                            Toast.makeText(
-                                                this@LoginActivity,
-                                                getString(R.string.password_doesnt_match),
-                                                Toast.LENGTH_SHORT
-                                            ).show()
                                         } else {
                                             Toast.makeText(
                                                 this@LoginActivity,
                                                 getString(R.string.login_failed),
                                                 Toast.LENGTH_SHORT
                                             ).show()
+                                            loadingDialog.dismiss()
                                         }
                                     }
-                            } else if (document.data["role"] == "admin") {
-                                auth.signInWithEmailAndPassword(
-                                    document.data["email"].toString(),
-                                    password
-                                )
-                                    .addOnCompleteListener(this@LoginActivity) { task ->
+                                } else if (document.data["role"] == "admin") {
+                                    auth.signInWithEmailAndPassword(
+                                        document.data["email"].toString(),
+                                        password
+                                    ).addOnCompleteListener(this@LoginActivity) { task ->
                                         if (task.isSuccessful) {
                                             clearInput()
                                             firebaseUser = auth.currentUser!!
@@ -117,25 +119,37 @@ class LoginActivity : AppCompatActivity() {
                                                     MainAdminActivity::class.java
                                                 )
                                             )
+                                            loadingDialog.dismiss()
                                             finish()
-                                        } else if (document.data["password"] != password) {
-                                            Toast.makeText(
-                                                this@LoginActivity,
-                                                getString(R.string.password_doesnt_match),
-                                                Toast.LENGTH_SHORT
-                                            ).show()
                                         } else {
                                             Toast.makeText(
                                                 this@LoginActivity,
                                                 getString(R.string.login_failed),
                                                 Toast.LENGTH_SHORT
                                             ).show()
+                                            loadingDialog.dismiss()
                                         }
                                     }
+                                }
                             }
                         }
                     }
-                    loadingDialog.dismiss()
+
+                    if (!isUsernameMatched) {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            getString(R.string.username_doesnt_match),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        loadingDialog.dismiss()
+                    } else if (!isPasswordMatched) {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            getString(R.string.password_doesnt_match),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        loadingDialog.dismiss()
+                    }
                 }.addOnFailureListener {
                     Toast.makeText(
                         this@LoginActivity,

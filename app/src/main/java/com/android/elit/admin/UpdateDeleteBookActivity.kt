@@ -348,7 +348,6 @@ class UpdateDeleteBookActivity : AppCompatActivity() {
                             getString(R.string.book_deleted),
                             Toast.LENGTH_SHORT
                         ).show()
-
                         userRepository.getUsers().get().addOnSuccessListener { querySnapshot ->
                             for (doc in querySnapshot) {
                                 userRepository.getFavoriteBooks(doc.id).whereEqualTo("id", bookId)

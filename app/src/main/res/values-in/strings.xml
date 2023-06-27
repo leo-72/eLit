@@ -147,6 +147,7 @@
     <string name="cancel">Batal</string>
     <string name="change_language">Ubah Bahasa</string>
     <string name="synopsis">Sinopsis</string>
-    <string name="downloading">Downloading...</string>
+    <string name="downloading">Mengunduh . . .</string>
     <string name="nullable">null</string>
+    <string name="username_doesnt_match">Username tidak sesuai</string>
 </resources>

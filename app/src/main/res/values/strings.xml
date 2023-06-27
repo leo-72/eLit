@@ -145,7 +145,8 @@
     <string name="choose_language">Choose Language</string>
     <string name="cancel">Cancel</string>
     <string name="change_language">Change Language</string>
-    <string name="synopsis">Sinopsis</string>
-    <string name="downloading">Downloading...</string>
+    <string name="synopsis">Synopsis</string>
+    <string name="downloading">Downloading . . .</string>
     <string name="nullable">null</string>
+    <string name="username_doesnt_match">Username do not match</string>
 </resources>
