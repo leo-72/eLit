@@ -31,6 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
+                android:background="@color/grey"
                 android:contentDescription="@string/iv_books_image"
                 tools:srcCompat="@tools:sample/avatars"/>
         </androidx.cardview.widget.CardView>

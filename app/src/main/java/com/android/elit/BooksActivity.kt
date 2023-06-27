@@ -48,6 +48,7 @@ class BooksActivity : AppCompatActivity() {
     @SuppressLint("NotifyDataSetChanged")
     private fun setContent() {
         loadingDialog.show()
+        binding.rvBooks.visibility = View.GONE
 
         val onItemClick: (Books) -> Unit = { books ->
             val intent = Intent(this, DetailBookActivity::class.java)
@@ -65,9 +66,9 @@ class BooksActivity : AppCompatActivity() {
                 val books = result.toObjects(Books::class.java)
                 bookList.addAll(books)
                 bookAdapter.notifyDataSetChanged()
-                loadingDialog.dismiss()
             }
             loadingDialog.dismiss()
+            binding.rvBooks.visibility = View.VISIBLE
         }.addOnFailureListener {
             Toast.makeText(
                 this,
@@ -75,6 +76,7 @@ class BooksActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
             loadingDialog.dismiss()
+            binding.rvBooks.visibility = View.VISIBLE
         }
     }
 }
