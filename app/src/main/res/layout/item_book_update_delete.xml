@@ -5,15 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:gravity="center"
-    android:background="@color/white">
+    android:gravity="center">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_margin="10dp"
-        android:background="@color/white"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -50,7 +48,7 @@
                 android:textAlignment="textStart"
                 android:gravity="start"
                 android:textSize="16sp"
-                android:textColor="@color/text_color"
+                android:textColor="?android:textColorPrimary"
                 app:layout_constraintBottom_toTopOf="@+id/tv_author"
                 app:layout_constraintTop_toTopOf="@+id/cv_item_image"
                 app:layout_constraintStart_toEndOf="@+id/cv_item_image"/>
@@ -64,7 +62,7 @@
                 android:gravity="start"
                 android:textSize="14sp"
                 android:layout_marginTop="5dp"
-                android:textColor="@color/colorHint"
+                android:textColor="?android:textColorSecondary"
                 app:layout_constraintTop_toBottomOf="@+id/tv_title"
                 app:layout_constraintStart_toStartOf="@+id/tv_title"/>
             <TextView
@@ -86,36 +84,6 @@
                 app:layout_constraintStart_toEndOf="@id/cv_item_image"
                 app:layout_constraintBottom_toBottomOf="@+id/cv_item_image"
                 tools:ignore="SmallSp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv_id"
-                android:maxLines="0"
-                android:textColor="@android:color/transparent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv_description"
-                android:maxLines="0"
-                android:textColor="@android:color/transparent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv_pdfUrl"
-                android:maxLines="0"
-                android:textColor="@android:color/transparent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
@@ -132,8 +100,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.8dp"
-        android:background="@color/grey"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"/>
+        android:background="?android:textColorSecondary"/>
 
 </LinearLayout>

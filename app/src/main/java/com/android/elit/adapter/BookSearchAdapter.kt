@@ -26,9 +26,7 @@ class BookSearchAdapter(
             binding.apply {
                 tvTitle.text = books.title
                 tvAuthor.text = books.author
-                tvDescription.text = books.description
                 tvGenre.text = books.genre
-                tvPdfUrl.text = books.pdfUrl
                 Glide.with(itemView.context)
                     .load(books.image)
                     .into(imageBooks)

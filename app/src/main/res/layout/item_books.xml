@@ -45,26 +45,6 @@
             android:layout_height="wrap_content"
             android:text="@string/author_of_book"
             style="@style/AuthorBook"/>
-        <TextView
-            android:id="@+id/item_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/hiddenData"/>
-        <TextView
-            android:id="@+id/item_genre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/hiddenData"/>
-        <TextView
-            android:id="@+id/item_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/hiddenData"/>
-        <TextView
-            android:id="@+id/item_pdf"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/hiddenData"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

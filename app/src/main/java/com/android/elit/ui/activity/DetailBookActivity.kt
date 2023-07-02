@@ -70,14 +70,7 @@ class DetailBookActivity : AppCompatActivity() {
             }
         }
 
-        val startColor = ContextCompat.getColor(this, color.transparent)
-        val endColor = ContextCompat.getColor(this, R.color.second_color)
-        val startColorText = ContextCompat.getColor(this, color.black)
-        val endColorText = ContextCompat.getColor(this, color.white)
-        val startColorButton = ContextCompat.getColor(this, R.color.black)
-        val endColorButton = ContextCompat.getColor(this, R.color.white)
         val toolbar: Toolbar = binding.mainToolbar
-        val scrollView: NestedScrollView = binding.nestedScrollView
         val backButton = binding.ivBackToolbar
         val textView = binding.tvTitleToolbar
 
@@ -87,7 +80,6 @@ class DetailBookActivity : AppCompatActivity() {
             if (it != null) {
                 val title = it.data?.get("title").toString()
                 textView.setTextEllipsis(title, 40)
-                textView.setTextColor(ContextCompat.getColor(this, R.color.black))
             }
         }
 
@@ -96,13 +88,6 @@ class DetailBookActivity : AppCompatActivity() {
         backButton.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
-
-        scrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, _ ->
-            val alpha = abs(1f.coerceAtMost(scrollY / toolbar.height.toFloat()))
-            toolbar.setBackgroundColor(ColorUtils.blendARGB(startColor, endColor, alpha))
-            textView.setTextColor(ColorUtils.blendARGB(startColorText, endColorText, alpha))
-            backButton.setColorFilter(ColorUtils.blendARGB(startColorButton, endColorButton, alpha))
-        })
     }
 
     private fun getDetailBook() {

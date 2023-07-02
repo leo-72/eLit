@@ -31,12 +31,9 @@ class BooksRecommendAdapter(
             itemView.setOnClickListener {
                 onItemClick(books)
             }
-            binding.itemId.text = books.id.toString()
+
             binding.itemTitle.setTextEllipsis(books.title.toString(), 30)
             binding.itemAuthor.setTextEllipsis(books.author.toString(), 30)
-            binding.itemDescription.text = books.description
-            binding.itemGenre.text = books.genre
-            binding.itemPdf.text = books.pdfUrl
             Glide.with(itemView.context)
                 .load(books.image)
                 .into(binding.itemImage)

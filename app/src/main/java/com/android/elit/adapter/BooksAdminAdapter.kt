@@ -43,12 +43,9 @@ class BooksAdminAdapter (private val itemList: ArrayList<Books>): RecyclerView.A
                 itemView.context.startActivity(intent)
             }
 
-            binding.tvId.text = books.id.toString()
             binding.tvTitle.setTextEllipsis(books.title.toString(), 30)
             binding.tvAuthor.setTextEllipsis(books.author.toString(), 30)
-            binding.tvDescription.text = books.description
             binding.tvGenre.text = books.genre
-            binding.tvPdfUrl.text = books.pdfUrl
             Glide.with(itemView.context)
                 .load(books.image)
                 .into(binding.imageBooks)

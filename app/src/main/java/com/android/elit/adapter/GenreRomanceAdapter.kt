@@ -33,12 +33,8 @@ class GenreRomanceAdapter(
                 onItemClick(romance)
             }
 
-            binding.itemId.text = romance.id.toString()
             binding.itemTitle.setTextEllipsis(romance.title.toString(), 30)
             binding.itemAuthor.setTextEllipsis(romance.author.toString(), 30)
-            binding.itemDescription.text = romance.description
-            binding.itemGenre.text = romance.genre
-            binding.itemPdf.text = romance.pdfUrl
             Glide.with(itemView.context)
                 .load(romance.image)
                 .into(binding.itemImage)

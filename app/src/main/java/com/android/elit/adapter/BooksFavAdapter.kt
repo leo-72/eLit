@@ -24,9 +24,7 @@ class BooksFavAdapter(
             binding.apply {
                 tvTitle.text = favBooks.title
                 tvAuthor.text = favBooks.author
-                tvDescription.text = favBooks.description
                 tvGenre.text = favBooks.genre
-                tvPdfUrl.text = favBooks.pdfUrl
                 Glide.with(itemView.context)
                     .load(favBooks.image)
                     .into(imageBooks)

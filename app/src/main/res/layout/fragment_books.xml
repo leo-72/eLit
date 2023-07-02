@@ -44,10 +44,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_container">
+            android:padding="15dp">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_slider_image"
@@ -84,7 +81,8 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tv_recommend_novel"
                 app:layout_constraintTop_toTopOf="@+id/tv_recommend_novel"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:drawableEndCompat="@drawable/custom_right_arrow" />
+                app:drawableEndCompat="@drawable/custom_right_arrow"
+                app:drawableTint="?android:textColorPrimary"/>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_cover_recommend"

@@ -30,12 +30,9 @@ class GenreFictionAdapter(private val listItem: ArrayList<Fiction>, private val 
             itemView.setOnClickListener{
                 onItemClick(fiction)
             }
-            binding.itemId.text = fiction.id.toString()
+
             binding.itemTitle.setTextEllipsis(fiction.title.toString(), 30)
             binding.itemAuthor.setTextEllipsis(fiction.author.toString(), 30)
-            binding.itemDescription.text = fiction.description
-            binding.itemGenre.text = fiction.genre
-            binding.itemPdf.text = fiction.pdfUrl
             Glide.with(itemView.context)
                 .load(fiction.image)
                 .into(binding.itemImage)
