@@ -1,19 +1,21 @@
 package com.android.elit.fragment
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.android.elit.ui.activity.ChangePasswordActivity
 import com.android.elit.LoadingDialog
 import com.android.elit.R
-import com.android.elit.ui.activity.UpdateProfileActivity
 import com.android.elit.databinding.FragmentAccountBinding
 import com.android.elit.repository.UserRepository
+import com.android.elit.ui.activity.ChangePasswordActivity
 import com.android.elit.ui.activity.LoginActivity
+import com.android.elit.ui.activity.UpdateProfileActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -51,12 +53,22 @@ class AccountFragment : Fragment() {
         loadingDialog.show()
         binding.tvNameOfUser.text = null
 
+        versionApp()
         actionBar()
         setGreeting()
         setName()
         chooseOption()
         autoRefreshUI()
         logout()
+    }
+
+    @Suppress("DEPRECATION")
+    @SuppressLint("SetTextI18n")
+    private fun versionApp(){
+        val packageInfo = requireActivity().packageManager.getPackageInfo(requireActivity().packageName, PackageManager.GET_ACTIVITIES)
+        val versionName = packageInfo.versionName
+
+        binding.tvVersion.text = getString(R.string.version)+" "+versionName
     }
 
     private fun actionBar(){

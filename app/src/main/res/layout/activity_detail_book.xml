@@ -31,6 +31,7 @@
                 android:id="@+id/tv_title_toolbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 style="@style/CustomTitleToolbar"/>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>

@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         app:lottie_rawRes="@raw/no_data"
         app:lottie_autoPlay="true"
-        app:lottie_loop="true"/>
+        app:lottie_loop="false"/>
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"

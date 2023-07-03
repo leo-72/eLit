@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/navigation_books"
         android:title="@string/nav_books"
+        android:enabled="true"
         android:fontFamily="@font/inter_regular"
         android:textSize="12sp"
-        android:icon="@drawable/ic_book" />
+        android:icon="@drawable/ic_book"
+        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/navigation_favourite"
         android:title="@string/nav_fav"
+        android:enabled="true"
         android:fontFamily="@font/inter_regular"
         android:textSize="12sp"
-        android:icon="@drawable/ic_fav_inactive" />
+        android:icon="@drawable/ic_fav_inactive"
+        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/navigation_account"
         android:title="@string/nav_acc"
+        android:enabled="true"
         android:fontFamily="@font/inter_regular"
         android:textSize="12sp"
-        android:icon="@drawable/ic_acc" />
+        android:icon="@drawable/ic_acc"
+        app:showAsAction="ifRoom"/>
 </menu>

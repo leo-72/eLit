@@ -1,10 +1,11 @@
 package com.android.elit
 
+import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import androidx.appcompat.app.AppCompatActivity
 import com.android.elit.admin.MainAdminActivity
 import com.android.elit.databinding.ActivitySplashScreenBinding
 import com.android.elit.ui.activity.LoginActivity
@@ -12,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 
+@SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashScreenBinding
@@ -24,7 +26,7 @@ class SplashScreenActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
-        fs =  FirebaseFirestore.getInstance()
+        fs = FirebaseFirestore.getInstance()
 
         Handler(Looper.getMainLooper()).postDelayed({
             val user = auth.currentUser
@@ -34,7 +36,7 @@ class SplashScreenActivity : AppCompatActivity() {
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
-        },2000)
+        }, 2000)
     }
 
     private fun updateUI(user: FirebaseUser?) {
